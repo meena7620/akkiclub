@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AKKI PRIME SHOP | Online Fashion Store</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f7f7f7;
+      color: #111;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .cart {
+      background: white;
+      color: #111;
+      padding: 10px 16px;
+      border-radius: 25px;
+      font-weight: bold;
+    }
+
+    .hero {
+      min-height: 430px;
+      background: linear-gradient(120deg, #111, #444);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 50px 7%;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      color: #ddd;
+    }
+
+    .shop-btn {
+      display: inline-block;
+      background: white;
+      color: #111;
+      padding: 14px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .categories {
+      text-align: center;
+      padding: 40px 5%;
+    }
+
+    .categories h2 {
+      font-size: 30px;
+      margin-bottom: 25px;
+    }
+
+    .category-buttons button {
+      border: none;
+      background: #111;
+      color: white;
+      padding: 12px 25px;
+      margin: 6px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .products {
+      padding: 20px 6% 60px;
+    }
+
+    .products h2 {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-img {
+      height: 260px;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 55px;
+    }
+
+    .product-info {
+      padding: 18px;
+    }
+
+    .product-info h3 {
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .buy-btn {
+      width: 100%;
+      border: none;
+      background: #111;
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #25D366;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 200;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    @media(max-width:600px) {
+      .hero h1 {
+        font-size: 35px;
+      }
+
+      .hero {
+        min-height: 360px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">AKKI PRIME SHOP</div>
+  <div class="cart">🛒 Cart: <span id="cartCount">0</span></div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>AKKI PRIME SHOP</h1>
+    <p>Men • Women • Kids — Latest Fashion At Amazing Prices</p>
+    <a href="#shop" class="shop-btn">SHOP NOW →</a>
+  </div>
+</section>
+
+<section class="categories">
+  <h2>Shop By Category</h2>
+
+  <div class="category-buttons">
+    <button onclick="filterProducts('all')">ALL</button>
+    <button onclick="filterProducts('men')">MEN</button>
+    <button onclick="filterProducts('women')">WOMEN</button>
+    <button onclick="filterProducts('kids')">KIDS</button>
+  </div>
+</section>
+
+<section class="products" id="shop">
+
+  <h2>🔥 Featured Collection</h2>
+
+  <div class="product-grid">
+
+    <div class="product" data-category="men">
+      <div class="product-img">👕</div>
+      <div class="product-info">
+        <h3>Premium Men's T-Shirt</h3>
+        <div class="price">₹499</div>
+        <button class="buy-btn" onclick="order('Premium Men’s T-Shirt',499)">
+          BUY NOW
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="men">
+      <div class="product-img">👔</div>
+      <div class="product-info">
+        <h3>Classic Men's Shirt</h3>
+        <div class="price">₹799</div>
+        <button class="buy-btn" onclick="order('Classic Men’s Shirt',799)">
+          BUY NOW
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="women">
+      <div class="product-img">👗</div>
+      <div class="product-info">
+        <h3>Women's Fashion Dress</h3>
+        <div class="price">₹899</div>
+        <button class="buy-btn" onclick="order('Women’s Fashion Dress',899)">
+          BUY NOW
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="women">
+      <div class="product-img">👚</div>
+      <div class="product-info">
+        <h3>Women's Casual Top</h3>
+        <div class="price">₹599</div>
+        <button class="buy-btn" onclick="order('Women’s Casual Top',599)">
+          BUY NOW
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="kids">
+      <div class="product-img">🧒</div>
+      <div class="product-info">
+        <h3>Kids Fashion Wear</h3>
+        <div class="price">₹399</div>
+        <button class="buy-btn" onclick="order('Kids Fashion Wear',399)">
+          BUY NOW
+        </button>
+      </div>
+    </div>
+
+    <div class="product" data-category="kids">
+      <div class="product-img">👶</div>
+      <div class="product-info">
+        <h3>Kids Casual Outfit</h3>
+        <div class="price">₹449</div>
+        <button class="buy-btn" onclick="order('Kids Casual Outfit',449)">
+          BUY NOW
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<a class="whatsapp"
+   href="https://wa.me/919376156606?text=Hello%20AKKI%20PRIME%20SHOP%2C%20I%20want%20to%20place%20an%20order."
+   target="_blank">
+   💬 WhatsApp Order
+</a>
+
+<footer>
+  <h3>AKKI PRIME SHOP</h3>
+  <p>Men • Women • Kids</p>
+  <p>© 2026 AKKI PRIME SHOP. All Rights Reserved.</p>
+</footer>
+
+<script>
+
+  let cart = 0;
+
+  function order(product, price) {
+
+    cart++;
+
+    document.getElementById("cartCount").innerText = cart;
+
+    let message =
+      "Hello AKKI PRIME SHOP,%0A%0A" +
+      "I want to order:%0A" +
+      "Product: " + product + "%0A" +
+      "Price: ₹" + price + "%0A%0A" +
+      "Please share availability and order details.";
+
+    window.open(
+      "https://wa.me/919376156606?text=" + message,
+      "_blank"
+    );
+  }
+
+  function filterProducts(category) {
+
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(function(product) {
+
+      if (
+        category === "all" ||
+        product.dataset.category === category
+      ) {
+        product.style.display = "block";
+      } else {
+        product.style.display = "none";
+      }
+
+    });
+  }
+
+</script>
+
+</body>
+</html>
