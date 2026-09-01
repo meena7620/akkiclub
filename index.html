@@ -1,1 +1,641 @@
-Update AK_PRIME website
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AK_PRIME — Premium Store</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f6f8;
+  color:#171717;
+}
+header{
+  background:#111;
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 3px 15px #0004;
+}
+.top{
+  max-width:1250px;
+  margin:auto;
+  padding:15px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+.logo{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:1px;
+  white-space:nowrap;
+}
+.logo span{color:#ffb400}
+.search{
+  flex:1;
+  display:flex;
+}
+.search input{
+  width:100%;
+  padding:13px 16px;
+  border:0;
+  outline:0;
+  border-radius:10px 0 0 10px;
+  font-size:15px;
+}
+.search button{
+  border:0;
+  background:#ffb400;
+  padding:0 18px;
+  border-radius:0 10px 10px 0;
+  cursor:pointer;
+  font-size:18px;
+}
+.cart{
+  background:#ffb400;
+  color:#111;
+  border:0;
+  padding:12px 16px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+nav{
+  max-width:1250px;
+  margin:auto;
+  padding:0 15px 12px;
+  display:flex;
+  gap:10px;
+  overflow:auto;
+}
+nav button{
+  border:1px solid #555;
+  background:#222;
+  color:white;
+  padding:8px 14px;
+  border-radius:20px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+nav button:hover{background:#ffb400;color:#111}
+
+.hero{
+  max-width:1250px;
+  margin:20px auto;
+  padding:45px 25px;
+  border-radius:18px;
+  background:linear-gradient(120deg,#111,#303030);
+  color:white;
+}
+.hero h1{font-size:42px;margin-bottom:10px}
+.hero h1 span{color:#ffb400}
+.hero p{color:#ddd;margin-bottom:20px}
+.hero button{
+  background:#ffb400;
+  border:0;
+  padding:13px 22px;
+  border-radius:9px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.filters{
+  max-width:1250px;
+  margin:20px auto;
+  padding:0 15px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+.filters select{
+  padding:11px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  background:white;
+}
+
+.products{
+  max-width:1250px;
+  margin:auto;
+  padding:0 15px 40px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+.card{
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 3px 15px #00000012;
+  transition:.2s;
+}
+.card:hover{transform:translateY(-3px)}
+.pic{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  background:#eee;
+}
+.info{padding:14px}
+.info h3{
+  font-size:16px;
+  margin-bottom:8px;
+}
+.category{
+  color:#777;
+  font-size:12px;
+}
+.price{
+  margin:10px 0;
+  font-size:20px;
+  font-weight:bold;
+}
+.old{
+  color:#999;
+  text-decoration:line-through;
+  font-size:13px;
+  margin-left:6px;
+}
+.buy{
+  width:100%;
+  padding:11px;
+  border:0;
+  border-radius:8px;
+  background:#111;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+.buy:hover{background:#ffb400;color:#111}
+
+.features{
+  max-width:1250px;
+  margin:10px auto 30px;
+  padding:0 15px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+.feature{
+  background:white;
+  padding:20px;
+  text-align:center;
+  border-radius:12px;
+}
+.feature b{display:block;margin-bottom:5px}
+
+footer{
+  background:#111;
+  color:#ddd;
+  padding:35px 20px;
+  text-align:center;
+}
+footer h2{color:white;margin-bottom:8px}
+.whatsapp{
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 18px;
+  border-radius:9px;
+  background:#25d366;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0009;
+  z-index:2000;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+.box{
+  background:white;
+  width:100%;
+  max-width:500px;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:15px;
+  padding:20px;
+}
+.close{
+  float:right;
+  border:0;
+  background:#eee;
+  border-radius:50%;
+  width:30px;
+  height:30px;
+  cursor:pointer;
+}
+.box h2{margin-bottom:15px}
+.cartitem{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+.total{
+  font-size:21px;
+  font-weight:bold;
+  margin:18px 0;
+}
+.pay{
+  width:100%;
+  border:0;
+  padding:13px;
+  margin-top:8px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.cod{background:#111;color:white}
+.prepaid{background:#ffb400}
+.track{background:#25d366;color:white}
+
+.empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:40px;
+}
+
+@media(max-width:900px){
+  .products{grid-template-columns:repeat(3,1fr)}
+  .features{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+  .top{flex-wrap:wrap}
+  .logo{width:100%;text-align:center}
+  .search{order:2;width:100%}
+  .cart{order:3}
+  .hero{margin:12px;padding:30px 20px}
+  .hero h1{font-size:30px}
+  .products{grid-template-columns:repeat(2,1fr);gap:10px}
+  .pic{height:180px}
+  .info{padding:10px}
+  .info h3{font-size:14px}
+  .price{font-size:17px}
+}
+@media(max-width:400px){
+  .products{grid-template-columns:1fr 1fr}
+  .pic{height:150px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="top">
+    <div class="logo">AK_<span>PRIME</span></div>
+
+    <div class="search">
+      <input id="search" type="text" placeholder="Search products..." oninput="showProducts()">
+      <button onclick="showProducts()">🔍</button>
+    </div>
+
+    <button class="cart" onclick="openCart()">🛒 Cart (<span id="count">0</span>)</button>
+  </div>
+
+  <nav>
+    <button onclick="setCategory('All')">All</button>
+    <button onclick="setCategory('Men')">Men</button>
+    <button onclick="setCategory('Women')">Women</button>
+    <button onclick="setCategory('Kids')">Kids</button>
+    <button onclick="setCategory('Electronics')">Electronics</button>
+    <button onclick="setCategory('Shoes')">Shoes</button>
+    <button onclick="setCategory('Beauty')">Beauty</button>
+    <button onclick="setCategory('Home')">Home</button>
+    <button onclick="setCategory('Accessories')">Accessories</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Welcome to <span>AK_PRIME</span></h1>
+  <p>Premium products • Best prices • Cash on Delivery • Easy shopping</p>
+  <button onclick="document.getElementById('products').scrollIntoView()">SHOP NOW</button>
+</section>
+
+<section class="features">
+  <div class="feature">🚚<b>Fast Delivery</b>Across India</div>
+  <div class="feature">💰<b>Best Prices</b>Premium deals</div>
+  <div class="feature">🛡️<b>Secure Payment</b>Multiple options</div>
+  <div class="feature">📦<b>Cash on Delivery</b>Available</div>
+</section>
+
+<div class="filters">
+  <b id="resultText">All Products</b>
+  <select onchange="sortProducts(this.value)">
+    <option value="default">Sort Products</option>
+    <option value="low">Price: Low to High</option>
+    <option value="high">Price: High to Low</option>
+  </select>
+</div>
+
+<section class="products" id="products"></section>
+
+<footer>
+  <h2>AK_PRIME</h2>
+  <p>Premium Online Store</p>
+  <p>For product tracking/support only</p>
+
+  <a class="whatsapp"
+     href="https://wa.me/918949629097"
+     target="_blank">
+     💬 WhatsApp Customer Service
+  </a>
+
+  <p style="margin-top:20px;font-size:12px">
+    © 2026 AK_PRIME. All rights reserved.
+  </p>
+</footer>
+
+<!-- CART -->
+<div class="modal" id="cartModal">
+  <div class="box">
+    <button class="close" onclick="closeCart()">×</button>
+    <h2>🛒 Your Cart</h2>
+    <div id="cartItems"></div>
+    <div class="total">Total: ₹<span id="total">0</span></div>
+
+    <button class="pay cod" onclick="checkout('Cash on Delivery')">
+      📦 Cash on Delivery
+    </button>
+
+    <button class="pay prepaid" onclick="checkout('Prepaid Payment')">
+      💳 Pay Before Delivery
+    </button>
+
+    <button class="pay track"
+      onclick="window.open('https://wa.me/918949629097','_blank')">
+      💬 WhatsApp — Track Order
+    </button>
+  </div>
+</div>
+
+<script>
+
+const categories = [
+  "Men","Women","Kids","Electronics",
+  "Shoes","Beauty","Home","Accessories"
+];
+
+const names = {
+  Men:[
+    "Premium Men's T-Shirt",
+    "Classic Men's Shirt",
+    "Premium Jeans",
+    "Casual Men's Hoodie",
+    "Stylish Men's Jacket"
+  ],
+  Women:[
+    "Women's Fashion Dress",
+    "Premium Kurti",
+    "Women's Top",
+    "Fashion Saree",
+    "Women's Casual Wear"
+  ],
+  Kids:[
+    "Kids Fashion T-Shirt",
+    "Kids Jeans",
+    "Kids Dress",
+    "Kids Shoes",
+    "Kids Hoodie"
+  ],
+  Electronics:[
+    "Wireless Earbuds",
+    "Bluetooth Speaker",
+    "Smart Watch",
+    "Wireless Headphones",
+    "Mobile Accessories"
+  ],
+  Shoes:[
+    "Premium Running Shoes",
+    "Casual Sneakers",
+    "Men's Sports Shoes",
+    "Women's Sneakers",
+    "Fashion Shoes"
+  ],
+  Beauty:[
+    "Beauty Care Kit",
+    "Skin Care Product",
+    "Hair Care Kit",
+    "Makeup Accessories",
+    "Personal Care Kit"
+  ],
+  Home:[
+    "Home Storage Box",
+    "Kitchen Organizer",
+    "Home Decoration",
+    "LED Light",
+    "Premium Home Item"
+  ],
+  Accessories:[
+    "Premium Wallet",
+    "Fashion Sunglasses",
+    "Travel Bag",
+    "Premium Belt",
+    "Fashion Accessory"
+  ]
+};
+
+let products = [];
+let cart = [];
+let currentCategory = "All";
+let currentSort = "default";
+
+/* Creates a large catalogue automatically */
+let id = 1;
+
+for(let c of categories){
+  for(let i=0;i<250;i++){
+    let n = names[c][i % names[c].length];
+    let price = 199 + ((i * 137 + c.length * 51) % 2800);
+    let old = price + 300 + ((i*31)%700);
+
+    products.push({
+      id:id++,
+      name:n + " " + (i+1),
+      category:c,
+      price:price,
+      old:old,
+      image:"https://picsum.photos/seed/akprime"+id+"/500/500"
+    });
+  }
+}
+
+function showProducts(){
+
+  let q = document.getElementById("search").value.toLowerCase();
+
+  let list = products.filter(p =>
+    (currentCategory==="All" || p.category===currentCategory) &&
+    p.name.toLowerCase().includes(q)
+  );
+
+  if(currentSort==="low")
+    list.sort((a,b)=>a.price-b.price);
+
+  if(currentSort==="high")
+    list.sort((a,b)=>b.price-a.price);
+
+  let html="";
+
+  if(list.length===0){
+    html='<div class="empty">No products found.</div>';
+  }else{
+
+    /* Show first 60 for fast loading */
+    list.slice(0,60).forEach(p=>{
+
+      html += `
+      <div class="card">
+        <img class="pic" src="${p.image}" loading="lazy">
+
+        <div class="info">
+          <div class="category">${p.category}</div>
+          <h3>${p.name}</h3>
+
+          <div class="price">
+            ₹${p.price}
+            <span class="old">₹${p.old}</span>
+          </div>
+
+          <button class="buy" onclick="addCart(${p.id})">
+            ADD TO CART
+          </button>
+        </div>
+      </div>
+      `;
+    });
+  }
+
+  document.getElementById("products").innerHTML=html;
+  document.getElementById("resultText").innerText =
+    `${list.length}+ Products`;
+}
+
+function setCategory(c){
+  currentCategory=c;
+  showProducts();
+  document.getElementById("products").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+function sortProducts(v){
+  currentSort=v;
+  showProducts();
+}
+
+function addCart(id){
+
+  let product=products.find(p=>p.id===id);
+
+  let found=cart.find(p=>p.id===id);
+
+  if(found){
+    found.qty++;
+  }else{
+    cart.push({...product,qty:1});
+  }
+
+  updateCount();
+
+  alert("Product added to cart!");
+}
+
+function updateCount(){
+
+  let count=cart.reduce((sum,p)=>sum+p.qty,0);
+
+  document.getElementById("count").innerText=count;
+}
+
+function openCart(){
+
+  let html="";
+
+  if(cart.length===0){
+    html="<p>Your cart is empty.</p>";
+  }else{
+
+    cart.forEach(p=>{
+      html += `
+      <div class="cartitem">
+        <div>
+          <b>${p.name}</b><br>
+          ₹${p.price} × ${p.qty}
+        </div>
+
+        <button onclick="removeCart(${p.id})">
+          ❌
+        </button>
+      </div>
+      `;
+    });
+  }
+
+  document.getElementById("cartItems").innerHTML=html;
+
+  let total=cart.reduce(
+    (sum,p)=>sum+(p.price*p.qty),0
+  );
+
+  document.getElementById("total").innerText=total;
+
+  document.getElementById("cartModal").style.display="flex";
+}
+
+function closeCart(){
+  document.getElementById("cartModal").style.display="none";
+}
+
+function removeCart(id){
+
+  cart=cart.filter(p=>p.id!==id);
+
+  updateCount();
+  openCart();
+}
+
+function checkout(method){
+
+  if(cart.length===0){
+    alert("Please add a product to cart first.");
+    return;
+  }
+
+  let total=cart.reduce(
+    (sum,p)=>sum+(p.price*p.qty),0
+  );
+
+  if(method==="Cash on Delivery"){
+    alert(
+      "COD selected.\n\n"+
+      "Total: ₹"+total+
+      "\n\nOrder confirmation/payment gateway ko production setup me connect karna hoga."
+    );
+  }else{
+    alert(
+      "Prepaid payment selected.\n\n"+
+      "Total: ₹"+total+
+      "\n\nReal online payment ke liye Razorpay/UPI/payment gateway connect karna hoga."
+    );
+  }
+}
+
+showProducts();
+updateCount();
+
+</script>
+
+</body>
+</html>
