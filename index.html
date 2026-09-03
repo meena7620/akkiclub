@@ -84,7 +84,43 @@ function showAdminButton(){
 }
 
 function openAdmin(){
-  alert("Admin Panel ready ✅");
+  const old = document.getElementById("adminModal");
+  if(old) old.remove();
+
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.id = "adminModal";
+
+  modal.innerHTML = `
+    <div class="box">
+      <button class="close" onclick="closeModal('adminModal')">×</button>
+      <h2>⚙️ Admin Panel</h2>
+
+      <button class="primary" onclick="adminProducts()">📦 Manage Products</button>
+      <button class="secondary" onclick="adminOrders()">🛒 Manage Orders</button>
+
+      <div id="adminBody" style="margin-top:15px">
+        <p>Admin Panel ready ✅</p>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+  openModal("adminModal");
+}
+
+function adminProducts(){
+  document.getElementById("adminBody").innerHTML = `
+    <h3>📦 Product Management</h3>
+    <p style="margin-top:10px">Yahan se products add, edit aur delete karenge.</p>
+  `;
+}
+
+function adminOrders(){
+  document.getElementById("adminBody").innerHTML = `
+    <h3>🛒 Orders</h3>
+    <p style="margin-top:10px">Yahan customer orders manage karenge.</p>
+  `;
 }
 
 checkAdmin();
