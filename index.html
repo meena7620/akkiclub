@@ -209,7 +209,19 @@ async function placeOrder(){
  cart=[];saveCart();closeModal("checkoutModal");alert("Order placed ✅ Order ID: "+o.id);openOrders()
 }
 async function openOrders(){const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return alert("Pehle Login karo");const {data,error}=await supabaseClient.from("orders").select("*,order_items(*)").eq("user_id",user.id).order("created_at",{ascending:false});document.getElementById("ordersBody").innerHTML=error?error.message:(data?.length?data.map(o=>`<div class="order"><b>Order: ${o.id}</b><br>Total: ${money(o.total_amount)}<br>Status: ${esc(o.status)}<br>Payment: ${esc(o.payment_status)}<br>${(o.order_items||[]).map(i=>esc(i.product_name)+" × "+i.quantity).join("<br>")}</div>`).join(""):"No orders yet.");openModal("ordersModal")}
-supabaseClient.auth.onAuthStateChange(()=>updateCount());updateCount();loadProducts(true);
+supabaseClient.auth.onAuthStateChange(async (event, session)=>{
+  updateCount();
+
+  if(session){
+    await checkAdmin();
+  }else{
+    const oldBtn=document.getElementById("adminBtn");
+    if(oldBtn) oldBtn.remove();
+  }
+});
+
+updateCount();
+loadProducts(true);
 </script>
 </body>
 </html>
