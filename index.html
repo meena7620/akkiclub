@@ -6,222 +6,1644 @@
 <title>AKKI PRIME SHOP</title>
 <meta name="description" content="AKKI PRIME SHOP - Fashion & Lifestyle">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;background:#f5f6f8;color:#222}button{border:0;cursor:pointer}header{background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid #eee}.head{max-width:1400px;margin:auto;padding:12px 18px;display:flex;align-items:center;gap:18px}.logo{min-width:205px}.logo h1{font-size:25px}.logo b{color:#2874f0}.logo small{color:#777}.search{flex:1;display:flex;background:#f1f3f6;border-radius:8px;overflow:hidden;height:44px}.search input{flex:1;border:0;background:transparent;padding:0 14px;outline:0}.search button{width:55px;background:#2874f0;color:#fff;font-size:18px}.actions{display:flex;gap:14px}.act{background:none;font-weight:bold;text-align:center}.act span{display:block;font-size:21px}.cats{background:#fff;border-bottom:1px solid #eee;overflow:auto}.catbar{max-width:1400px;margin:auto;display:flex;justify-content:center;gap:9px;padding:9px}.cat{padding:10px 19px;border-radius:22px;background:#f1f3f6;white-space:nowrap;font-weight:bold}.cat.active,.cat:hover{background:#2874f0;color:#fff}.hero{max-width:1400px;margin:18px auto;padding:0 15px}.heroBox{min-height:330px;border-radius:16px;padding:50px;background:linear-gradient(90deg,#101827,#2874f0);color:white}.hero h2{font-size:48px;margin:10px 0}.hero p{font-size:17px;margin-bottom:22px}.shop{padding:13px 24px;border-radius:7px;color:#2874f0;font-weight:bold}.section{max-width:1400px;margin:25px auto;padding:0 15px}.title{display:flex;justify-content:space-between;margin-bottom:15px}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}.card{background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;cursor:pointer}.pic{height:250px;background:#f1f1f1;display:flex;align-items:center;justify-content:center;position:relative}.pic img{width:100%;height:100%;object-fit:cover}.heart{position:absolute;right:9px;top:9px;width:34px;height:34px;border-radius:50%;background:#fff;font-size:20px}.info{padding:12px}.name{font-weight:bold;min-height:38px}.price{font-size:19px;font-weight:bold}.mrp{text-decoration:line-through;color:#888;font-size:13px;margin-left:5px}.add{width:100%;margin-top:9px;padding:10px;background:#ff9f00;color:#fff;border-radius:6px;font-weight:bold}.load{display:block;margin:22px auto;padding:12px 25px;background:#2874f0;color:#fff;border-radius:7px}.features{background:#fff;padding:25px;margin-top:30px}.featuregrid{max-width:1400px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.modal{display:none;position:fixed;inset:0;background:#0008;z-index:50;align-items:center;justify-content:center;padding:15px}.box{background:#fff;border-radius:14px;max-width:650px;width:100%;max-height:90vh;overflow:auto;padding:22px;position:relative}.close{position:absolute;right:15px;top:12px;background:#eee;border-radius:50%;width:30px;height:30px}.box h2{margin-bottom:15px}.box input,.box textarea,.box select{width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:7px}.primary{width:100%;padding:12px;background:#2874f0;color:#fff;border-radius:7px;margin-top:8px;font-weight:bold}.secondary{width:100%;padding:12px;background:#eee;border-radius:7px;margin-top:8px}.detailImg{width:100%;max-height:350px;object-fit:contain;background:#f5f5f5;border-radius:8px}.mini{display:flex;gap:7px;margin:8px 0}.mini img{width:65px;height:65px;object-fit:cover;border-radius:6px;cursor:pointer}.row{display:flex;gap:8px}.order{border:1px solid #eee;border-radius:9px;padding:12px;margin:9px 0}.empty{text-align:center;background:#fff;padding:45px;border-radius:12px;grid-column:1/-1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f6f8;color:#222}
+button{border:0;cursor:pointer}
+header{background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid #eee}
+.head{max-width:1400px;margin:auto;padding:12px 18px;display:flex;align-items:center;gap:18px}
+.logo{min-width:205px;text-decoration:none;color:#222}
+.logo h1{font-size:25px}.logo b{color:#2874f0}.logo small{color:#777}
+.search{flex:1;display:flex;background:#f1f3f6;border-radius:8px;overflow:hidden;height:44px}
+.search input{flex:1;border:0;background:transparent;padding:0 14px;outline:0}
+.search button{width:55px;background:#2874f0;color:#fff;font-size:18px}
+.actions{display:flex;gap:14px}.act{background:none;font-weight:bold;text-align:center}
+.act span{display:block;font-size:21px}
+.cats{background:#fff;border-bottom:1px solid #eee;overflow:auto}
+.catbar{max-width:1400px;margin:auto;display:flex;justify-content:center;gap:9px;padding:9px}
+.cat{padding:10px 19px;border-radius:22px;background:#f1f3f6;white-space:nowrap;font-weight:bold}
+.cat.active,.cat:hover{background:#2874f0;color:#fff}
+.hero{max-width:1400px;margin:18px auto;padding:0 15px}
+.heroBox{min-height:330px;border-radius:16px;padding:50px;background:linear-gradient(90deg,#101827,#2874f0);color:white}
+.hero h2{font-size:48px;margin:10px 0}.hero p{font-size:17px;margin-bottom:22px}
+.shop{padding:13px 24px;border-radius:7px;color:#2874f0;font-weight:bold}
+.section{max-width:1400px;margin:25px auto;padding:0 15px}
+.title{display:flex;justify-content:space-between;margin-bottom:15px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}
+.card{background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;cursor:pointer}
+.pic{height:250px;background:#f1f1f1;display:flex;align-items:center;justify-content:center;position:relative}
+.pic img{width:100%;height:100%;object-fit:cover}
+.heart{position:absolute;right:9px;top:9px;width:34px;height:34px;border-radius:50%;background:#fff;font-size:20px}
+.info{padding:12px}.name{font-weight:bold;min-height:38px}
+.price{font-size:19px;font-weight:bold}
+.mrp{text-decoration:line-through;color:#888;font-size:13px;margin-left:5px}
+.add{width:100%;margin-top:9px;padding:10px;background:#ff9f00;color:#fff;border-radius:6px;font-weight:bold}
+.load{display:block;margin:22px auto;padding:12px 25px;background:#2874f0;color:#fff;border-radius:7px}
+.features{background:#fff;padding:25px;margin-top:30px}
+.featuregrid{max-width:1400px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:50;align-items:center;justify-content:center;padding:15px}
+.box{background:#fff;border-radius:14px;max-width:850px;width:100%;max-height:92vh;overflow:auto;padding:22px;position:relative}
+.close{position:absolute;right:15px;top:12px;background:#eee;border-radius:50%;width:30px;height:30px;font-size:20px}
+.box h2{margin-bottom:15px}
+.box input,.box textarea,.box select{width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:7px}
+.box textarea{min-height:80px;resize:vertical}
+.primary{width:100%;padding:12px;background:#2874f0;color:#fff;border-radius:7px;margin-top:8px;font-weight:bold}
+.secondary{width:100%;padding:12px;background:#eee;border-radius:7px;margin-top:8px}
+.detailImg{width:100%;max-height:350px;object-fit:contain;background:#f5f5f5;border-radius:8px}
+.mini{display:flex;gap:7px;margin:8px 0}
+.mini img{width:65px;height:65px;object-fit:cover;border-radius:6px;cursor:pointer}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.order{border:1px solid #eee;border-radius:9px;padding:12px;margin:9px 0}
+.empty{text-align:center;background:#fff;padding:45px;border-radius:12px;grid-column:1/-1}
+.adminTop{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:15px}
+.stat{background:#f5f6f8;padding:15px;border-radius:10px;text-align:center}
+.stat b{display:block;font-size:24px;color:#2874f0}
+.adminTabs{display:flex;gap:8px;margin-bottom:15px}
+.adminTabs button{padding:10px 15px;border-radius:7px;background:#eee;font-weight:bold}
+.adminTabs button.active{background:#2874f0;color:#fff}
+.adminProduct{border:1px solid #ddd;border-radius:10px;padding:12px;margin:9px 0}
+.adminProduct img{width:70px;height:70px;object-fit:cover;border-radius:7px;float:left;margin-right:12px}
+.adminProduct:after{content:"";display:block;clear:both}
+.badge{display:inline-block;padding:4px 8px;border-radius:20px;background:#e8f5e9;color:#198754;font-size:12px}
+.badge.off{background:#ffe8e8;color:#d33}
+.adminActions{display:flex;gap:7px;margin-top:10px}
+.adminActions button{padding:8px 12px;border-radius:6px;background:#eee}
+.adminActions .edit{background:#2874f0;color:#fff}
+.adminActions .delete{background:#dc3545;color:#fff}
+.orderAdmin{border:1px solid #ddd;border-radius:10px;padding:14px;margin:10px 0}
+.orderAdmin h3{margin-bottom:7px}
+.orderAdmin select{width:auto;min-width:150px}
+.smallBtn{padding:8px 12px;border-radius:6px;background:#2874f0;color:#fff;font-weight:bold}
 footer{background:#172337;color:#fff;padding:35px;text-align:center;margin-top:30px}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:700px){.head{flex-wrap:wrap}.logo{width:100%}.actions{position:absolute;right:10px;top:12px}.search{order:3;flex-basis:100%}.heroBox{padding:30px 22px}.hero h2{font-size:34px}.grid{grid-template-columns:repeat(2,1fr);gap:9px}.pic{height:190px}.featuregrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:420px){.pic{height:165px}.featuregrid{grid-template-columns:1fr}}
+
+@media(max-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:700px){
+.head{flex-wrap:wrap}.logo{width:100%}.actions{position:absolute;right:10px;top:12px}
+.search{order:3;flex-basis:100%}.heroBox{padding:30px 22px}.hero h2{font-size:34px}
+.grid{grid-template-columns:repeat(2,1fr);gap:9px}.pic{height:190px}
+.featuregrid{grid-template-columns:repeat(2,1fr)}
+.adminTop{grid-template-columns:repeat(2,1fr)}
+.row{flex-direction:column}
+}
+@media(max-width:420px){.pic{height:165px}.featuregrid{grid-template-columns:1fr}}
 </style>
 </head>
+
 <body>
-<header><div class="head">
-<a class="logo" href="#"><h1>AKKI <b>PRIME</b></h1><small>SHOP • FASHION • LIFESTYLE</small></a>
-<div class="search"><input id="search" placeholder="Search products..."><button onclick="loadProducts(true)">🔍</button></div>
+
+<header>
+<div class="head">
+<a class="logo" href="#">
+<h1>AKKI <b>PRIME</b></h1>
+<small>SHOP • FASHION • LIFESTYLE</small>
+</a>
+
+<div class="search">
+<input id="search" placeholder="Search products...">
+<button onclick="loadProducts(true)">🔍</button>
+</div>
+
 <div class="actions">
 <button class="act" onclick="openAuth()"><span>👤</span>Login</button>
 <button class="act" onclick="openWishlist()"><span>❤️</span>Wishlist</button>
 <button class="act" onclick="openCart()"><span>🛒</span>Cart <b id="cartCount">0</b></button>
-</div></div></header>
-<nav class="cats"><div class="catbar">
+</div>
+</div>
+</header>
+
+<nav class="cats">
+<div class="catbar">
 <button class="cat active" onclick="setCategory('ALL',this)">All</button>
 <button class="cat" onclick="setCategory('MEN',this)">👨 Men</button>
 <button class="cat" onclick="setCategory('WOMEN',this)">👩 Women</button>
 <button class="cat" onclick="setCategory('KIDS',this)">🧒 Kids</button>
 <button class="cat" onclick="setCategory('FOOTWEAR',this)">👟 Footwear</button>
 <button class="cat" onclick="setCategory('ACCESSORIES',this)">👜 Accessories</button>
-</div></nav>
-<section class="hero"><div class="heroBox"><small>AKKI PRIME SHOP</small><h2>New Fashion.<br>New You.</h2><p>Trending fashion for Men, Women & Kids.</p><button class="shop" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">SHOP NOW →</button></div></section>
-<section class="section" id="products"><div class="title"><h2 id="heading">Trending Products</h2><span id="total">Loading...</span></div><div class="grid" id="grid"></div><button class="load" id="more" onclick="loadMore()">LOAD MORE</button></section>
-<section class="features"><div class="featuregrid"><div>🚚 <b>Fast Delivery</b><br><small>Quick & reliable</small></div><div>🔒 <b>Secure Shopping</b><br><small>Safe experience</small></div><div>↩️ <b>Easy Returns</b><br><small>Simple process</small></div><div>💬 <b>Support</b><br><small>We're here to help</small></div></div></section>
+</div>
+</nav>
+
+<section class="hero">
+<div class="heroBox">
+<small>AKKI PRIME SHOP</small>
+<h2>New Fashion.<br>New You.</h2>
+<p>Trending fashion for Men, Women & Kids.</p>
+<button class="shop" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+SHOP NOW →
+</button>
+</div>
+</section>
+
+<section class="section" id="products">
+<div class="title">
+<h2 id="heading">Trending Products</h2>
+<span id="total">Loading...</span>
+</div>
+<div class="grid" id="grid"></div>
+<button class="load" id="more" onclick="loadMore()">LOAD MORE</button>
+</section>
+
+<section class="features">
+<div class="featuregrid">
+<div>🚚 <b>Fast Delivery</b><br><small>Quick & reliable</small></div>
+<div>🔒 <b>Secure Shopping</b><br><small>Safe experience</small></div>
+<div>↩️ <b>Easy Returns</b><br><small>Simple process</small></div>
+<div>💬 <b>Support</b><br><small>We're here to help</small></div>
+</div>
+</section>
+
 <footer>© 2026 AKKI PRIME SHOP. All Rights Reserved.</footer>
 
-<div class="modal" id="authModal"><div class="box"><button class="close" onclick="closeModal('authModal')">×</button><h2 id="authTitle">Login</h2><input id="authEmail" type="email" placeholder="Email"><input id="authPass" type="password" placeholder="Password"><input id="authName" placeholder="Full Name" style="display:none"><button class="primary" onclick="authAction()" id="authBtn">Login</button><button class="secondary" onclick="toggleAuth()" id="authToggle">Create new account</button><p id="authMsg"></p></div></div>
+<!-- AUTH -->
+<div class="modal" id="authModal">
+<div class="box">
+<button class="close" onclick="closeModal('authModal')">×</button>
+<h2 id="authTitle">Login</h2>
+<input id="authEmail" type="email" placeholder="Email">
+<input id="authPass" type="password" placeholder="Password">
+<input id="authName" placeholder="Full Name" style="display:none">
+<button class="primary" onclick="authAction()" id="authBtn">Login</button>
+<button class="secondary" onclick="toggleAuth()" id="authToggle">Create new account</button>
+<p id="authMsg"></p>
+</div>
+</div>
 
-<div class="modal" id="productModal"><div class="box"><button class="close" onclick="closeModal('productModal')">×</button><img id="detailImg" class="detailImg"><div class="mini" id="thumbs"></div><h2 id="detailName"></h2><p id="detailDesc"></p><p><b id="detailPrice"></b> <s id="detailMrp"></s></p><p id="detailMaterial"></p><select id="detailSize"><option value="">Select Size</option></select><button class="primary" onclick="addDetailToCart()">🛒 Add to Cart</button></div></div>
+<!-- PRODUCT -->
+<div class="modal" id="productModal">
+<div class="box">
+<button class="close" onclick="closeModal('productModal')">×</button>
+<img id="detailImg" class="detailImg">
+<div class="mini" id="thumbs"></div>
+<h2 id="detailName"></h2>
+<p id="detailDesc"></p>
+<p><b id="detailPrice"></b> <s id="detailMrp"></s></p>
+<p id="detailMaterial"></p>
+<select id="detailSize"><option value="">Select Size</option></select>
+<button class="primary" onclick="addDetailToCart()">🛒 Add to Cart</button>
+</div>
+</div>
 
-<div class="modal" id="cartModal"><div class="box"><button class="close" onclick="closeModal('cartModal')">×</button><h2>Your Cart</h2><div id="cartBody"></div><button class="primary" onclick="checkout()">Proceed to Checkout</button></div></div>
+<!-- CART -->
+<div class="modal" id="cartModal">
+<div class="box">
+<button class="close" onclick="closeModal('cartModal')">×</button>
+<h2>Your Cart</h2>
+<div id="cartBody"></div>
+<button class="primary" onclick="checkout()">Proceed to Checkout</button>
+</div>
+</div>
 
-<div class="modal" id="wishModal"><div class="box"><button class="close" onclick="closeModal('wishModal')">×</button><h2>❤️ Wishlist</h2><div id="wishBody"></div></div></div>
+<!-- WISHLIST -->
+<div class="modal" id="wishModal">
+<div class="box">
+<button class="close" onclick="closeModal('wishModal')">×</button>
+<h2>❤️ Wishlist</h2>
+<div id="wishBody"></div>
+</div>
+</div>
 
-<div class="modal" id="profileModal"><div class="box"><button class="close" onclick="closeModal('profileModal')">×</button><h2>My Profile</h2><input id="pName" placeholder="Full Name"><input id="pMobile" placeholder="Mobile"><textarea id="pAddress" placeholder="Address"></textarea><input id="pCity" placeholder="City"><input id="pState" placeholder="State"><input id="pPin" placeholder="Pincode"><button class="primary" onclick="saveProfile()">Save Profile</button><button class="secondary" onclick="logout()">Logout</button></div></div>
+<!-- PROFILE -->
+<div class="modal" id="profileModal">
+<div class="box">
+<button class="close" onclick="closeModal('profileModal')">×</button>
+<h2>My Profile</h2>
+<input id="pName" placeholder="Full Name">
+<input id="pMobile" placeholder="Mobile">
+<textarea id="pAddress" placeholder="Address"></textarea>
+<input id="pCity" placeholder="City">
+<input id="pState" placeholder="State">
+<input id="pPin" placeholder="Pincode">
+<button class="primary" onclick="saveProfile()">Save Profile</button>
+<button class="secondary" onclick="openOrders()">📦 My Orders</button>
+<button class="secondary" onclick="logout()">Logout</button>
+</div>
+</div>
 
-<div class="modal" id="checkoutModal"><div class="box"><button class="close" onclick="closeModal('checkoutModal')">×</button><h2>Checkout</h2><input id="cName" placeholder="Full Name"><input id="cMobile" placeholder="Mobile"><textarea id="cAddress" placeholder="Address"></textarea><input id="cCity" placeholder="City"><input id="cState" placeholder="State"><input id="cPin" placeholder="Pincode"><select id="cPay"><option value="cod">Cash on Delivery</option></select><button class="primary" onclick="placeOrder()">Place Order</button><p id="orderMsg"></p></div></div>
+<!-- CHECKOUT -->
+<div class="modal" id="checkoutModal">
+<div class="box">
+<button class="close" onclick="closeModal('checkoutModal')">×</button>
+<h2>Checkout</h2>
+<input id="cName" placeholder="Full Name">
+<input id="cMobile" placeholder="Mobile">
+<textarea id="cAddress" placeholder="Address"></textarea>
+<input id="cCity" placeholder="City">
+<input id="cState" placeholder="State">
+<input id="cPin" placeholder="Pincode">
+<select id="cPay">
+<option value="cod">Cash on Delivery</option>
+</select>
+<button class="primary" onclick="placeOrder()">Place Order</button>
+<p id="orderMsg"></p>
+</div>
+</div>
 
-<div class="modal" id="ordersModal"><div class="box"><button class="close" onclick="closeModal('ordersModal')">×</button><h2>📦 My Orders</h2><div id="ordersBody">Loading...</div></div></div>
+<!-- MY ORDERS -->
+<div class="modal" id="ordersModal">
+<div class="box">
+<button class="close" onclick="closeModal('ordersModal')">×</button>
+<h2>📦 My Orders</h2>
+<div id="ordersBody">Loading...</div>
+</div>
+</div>
+
+<!-- ADMIN -->
+<div class="modal" id="adminModal">
+<div class="box">
+
+<button class="close" onclick="closeModal('adminModal')">×</button>
+
+<h2>⚙️ AKKI PRIME ADMIN PANEL</h2>
+
+<div class="adminTop">
+<div class="stat"><b id="statProducts">0</b>Products</div>
+<div class="stat"><b id="statActive">0</b>Active</div>
+<div class="stat"><b id="statOrders">0</b>Orders</div>
+<div class="stat"><b id="statPending">0</b>Pending</div>
+</div>
+
+<div class="adminTabs">
+<button id="tabProducts" class="active" onclick="adminProducts()">📦 Products</button>
+<button id="tabOrders" onclick="adminOrders()">🛒 Orders</button>
+</div>
+
+<div id="adminBody">Loading...</div>
+
+</div>
+</div>
 
 <script>
-const SUPABASE_URL="https://yeorrxdcsrzavpsioxco.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY="sb_publishable_zhV_YTg9B4wvJIb346legg_8FDD3JjN";
-const supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 
-let products=[], page=0, PAGE_SIZE=24, total=0, category="ALL", selected=null;
- let isAdmin = false;
+const SUPABASE_URL="https://yeorrxdcsrzavpsioxco.supabase.co";
+
+/* IMPORTANT:
+   YAHAN APNI CURRENT FILE WALI SUPABASE PUBLISHABLE KEY PASTE KARO.
+*/
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_zhV_YTg9B4wvJIb346legg_8FDD3JjN";
+
+const supabaseClient=supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+);
+
+let products=[];
+let page=0;
+let PAGE_SIZE=24;
+let total=0;
+let category="ALL";
+let selected=null;
+let isAdmin=false;
+let authMode="login";
+
+let cart=JSON.parse(localStorage.getItem("akkiCart")||"[]");
+let wishlist=JSON.parse(localStorage.getItem("akkiWishlist")||"[]");
+
+if(!Array.isArray(cart))cart=[];
+if(!Array.isArray(wishlist))wishlist=[];
+
+cart=cart.filter(x=>x&&x.id&&Number(x.qty)>0)
+.map(x=>({...x,qty:Number(x.qty)}));
+
+function esc(v){
+return String(v??"").replace(/[&<>"']/g,m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m]));
+}
+
+function money(v){
+return Number(v||0).toLocaleString("en-IN",{
+style:"currency",
+currency:"INR",
+maximumFractionDigits:0
+});
+}
+
+function img(p){
+return p?.image_1||"";
+}
+
+function openModal(id){
+document.getElementById(id).style.display="flex";
+}
+
+function closeModal(id){
+document.getElementById(id).style.display="none";
+}
+
+/* PRODUCTS */
+
+async function loadProducts(reset=false){
+
+if(reset){
+page=0;
+products=[];
+}
+
+const q=document.getElementById("search").value.trim();
+
+let query=supabaseClient
+.from("products")
+.select("*",{count:"exact"})
+.eq("is_active",true)
+.order("created_at",{ascending:false})
+.range(page*PAGE_SIZE,page*PAGE_SIZE+PAGE_SIZE-1);
+
+if(category!=="ALL"){
+query=query.eq("category",category);
+}
+
+if(q){
+const safe=q.replace(/[%(),]/g," ");
+query=query.or(
+`name.ilike.%${safe}%,category.ilike.%${safe}%,subcategory.ilike.%${safe}%`
+);
+}
+
+const {data,error,count}=await query;
+
+if(error){
+document.getElementById("grid").innerHTML=
+'<div class="empty"><h3>Products load nahi hue</h3><p>Supabase connection/database check karein.</p></div>';
+console.error(error);
+return;
+}
+
+if(reset)products=[];
+
+products.push(...(data||[]));
+total=count||0;
+
+render();
+page++;
+
+document.getElementById("more").style.display=
+products.length<total?"block":"none";
+}
+
+function render(){
+
+const g=document.getElementById("grid");
+
+if(!products.length){
+g.innerHTML=
+'<div class="empty"><h2>No products found 😔</h2><p>Try another search.</p></div>';
+}else{
+
+g.innerHTML=products.map(p=>{
+
+const d=p.mrp&&p.mrp>p.price
+?Math.round((p.mrp-p.price)*100/p.mrp)
+:0;
+
+return `
+<article class="card" onclick="openProduct('${p.id}')">
+
+<div class="pic">
+
+${img(p)
+?`<img src="${esc(img(p))}" alt="${esc(p.name)}" loading="lazy">`
+:"🛍️"}
+
+<button class="heart"
+onclick="event.stopPropagation();toggleWish('${p.id}')">
+${wishlist.includes(p.id)?"♥":"♡"}
+</button>
+
+${d
+?`<small style="position:absolute;left:8px;bottom:8px;background:#0b9b45;color:white;padding:4px;border-radius:4px">${d}% OFF</small>`
+:""}
+
+</div>
+
+<div class="info">
+
+<small>${esc(p.category)}</small>
+
+<div class="name">${esc(p.name)}</div>
+
+<div>
+<span class="price">${money(p.price)}</span>
+${p.mrp?`<span class="mrp">${money(p.mrp)}</span>`:""}
+</div>
+
+<button class="add"
+onclick="event.stopPropagation();addToCart('${p.id}')">
+🛒 ADD TO CART
+</button>
+
+</div>
+</article>
+`;
+
+}).join("");
+}
+
+document.getElementById("total").textContent=`${total} Products`;
+}
+
+function loadMore(){
+loadProducts(false);
+}
+
+function setCategory(c,b){
+
+category=c;
+
+document.querySelectorAll(".cat")
+.forEach(x=>x.classList.remove("active"));
+
+b.classList.add("active");
+
+document.getElementById("heading").textContent=
+c==="ALL"?"Trending Products":c+" Collection";
+
+loadProducts(true);
+}
+
+let timer;
+
+document.getElementById("search")
+.addEventListener("input",()=>{
+clearTimeout(timer);
+timer=setTimeout(()=>loadProducts(true),400);
+});
+
+/* PRODUCT DETAIL */
+
+async function openProduct(id){
+
+const found=products.find(x=>x.id===id);
+
+let p=found;
+
+if(!p){
+const r=await supabaseClient
+.from("products")
+.select("*")
+.eq("id",id)
+.single();
+
+p=r.data;
+}
+
+if(!p)return;
+
+selected=p;
+
+document.getElementById("detailImg").src=img(p)||"";
+
+document.getElementById("detailName").textContent=p.name||"";
+document.getElementById("detailDesc").textContent=p.description||"";
+document.getElementById("detailPrice").textContent=money(p.price);
+document.getElementById("detailMrp").textContent=p.mrp?money(p.mrp):"";
+document.getElementById("detailMaterial").textContent=
+p.material?`Material: ${p.material}`:"";
+
+const s=document.getElementById("detailSize");
+
+s.innerHTML=
+'<option value="">Select Size</option>'+
+(p.sizes||[]).map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("");
+
+document.getElementById("thumbs").innerHTML=
+[p.image_1,p.image_2,p.image_3]
+.filter(Boolean)
+.map(x=>`
+<img src="${esc(x)}"
+onclick="document.getElementById('detailImg').src='${esc(x)}'">
+`).join("");
+
+openModal("productModal");
+}
+
+function addDetailToCart(){
+
+if(!selected)return;
+
+const size=document.getElementById("detailSize").value;
+
+if((selected.sizes||[]).length&&!size){
+alert("Size select karo");
+return;
+}
+
+addToCart(selected.id,size);
+closeModal("productModal");
+}
+
+function addToCart(id,size=""){
+
+const p=products.find(x=>x.id===id);
+
+if(!p)return;
+
+const key=id+"|"+size;
+
+const found=cart.find(x=>x.key===key);
+
+if(found){
+found.qty++;
+}else{
+cart.push({
+key,
+id,
+size,
+qty:1
+});
+}
+
+saveCart();
+
+alert("Cart me add ho gaya 🛒");
+}
+
+function saveCart(){
+
+localStorage.setItem("akkiCart",JSON.stringify(cart));
+
+updateCount();
+}
+
+function updateCount(){
+
+document.getElementById("cartCount").textContent=
+cart.reduce((a,x)=>a+Number(x.qty||0),0);
+}
+
+/* CART */
+
+async function openCart(){
+
+const ids=[...new Set(cart.map(x=>x.id))];
+
+const r=ids.length
+?await supabaseClient.from("products").select("*").in("id",ids)
+:{data:[]};
+
+const list=r.data||[];
+
+let totalCart=0;
+
+document.getElementById("cartBody").innerHTML=
+cart.length
+?cart.map(x=>{
+
+const p=list.find(y=>y.id===x.id);
+
+if(!p)return"";
+
+totalCart+=Number(p.price)*Number(x.qty);
+
+return `
+<div class="order">
+
+<b>${esc(p.name)}</b><br>
+
+${x.size?"Size: "+esc(x.size)+" • ":""}
+
+Qty:
+<button onclick="changeQty('${esc(x.key)}',-1)">−</button>
+${x.qty}
+<button onclick="changeQty('${esc(x.key)}',1)">+</button>
+
+<br>
+
+${money(Number(p.price)*Number(x.qty))}
+
+<button onclick="removeCart('${esc(x.key)}')">
+Remove
+</button>
+
+</div>
+`;
+
+}).join("")+
+`<h3>Total: ${money(totalCart)}</h3>`
+
+:'<div class="empty">Cart is empty 🛒</div>';
+
+openModal("cartModal");
+}
+
+function changeQty(k,n){
+
+const x=cart.find(a=>a.key===k);
+
+if(x){
+
+x.qty+=n;
+
+if(x.qty<1){
+cart=cart.filter(a=>a.key!==k);
+}
+
+}
+
+saveCart();
+openCart();
+}
+
+function removeCart(k){
+
+cart=cart.filter(a=>a.key!==k);
+
+saveCart();
+openCart();
+}
+
+/* WISHLIST */
+
+function toggleWish(id){
+
+wishlist=wishlist.includes(id)
+?wishlist.filter(x=>x!==id)
+:[...wishlist,id];
+
+localStorage.setItem("akkiWishlist",JSON.stringify(wishlist));
+
+render();
+}
+
+async function openWishlist(){
+
+const list=wishlist.length
+?(await supabaseClient.from("products").select("*").in("id",wishlist)).data||[]
+:[];
+
+document.getElementById("wishBody").innerHTML=
+
+list.length
+?list.map(p=>`
+<div class="order">
+<b>${esc(p.name)}</b> — ${money(p.price)}
+<button onclick="addToCart('${p.id}')">Add Cart</button>
+</div>
+`).join("")
+:"Wishlist empty ❤️";
+
+openModal("wishModal");
+}
+
+/* AUTH */
+
+async function openAuth(){
+
+const {data}=await supabaseClient.auth.getSession();
+
+if(data.session){
+
+await loadProfile();
+openModal("profileModal");
+
+}else{
+
+openModal("authModal");
+
+}
+}
+
+function toggleAuth(){
+
+authMode=authMode==="login"?"register":"login";
+
+document.getElementById("authTitle").textContent=
+authMode==="login"?"Login":"Create Account";
+
+document.getElementById("authBtn").textContent=
+authMode==="login"?"Login":"Register";
+
+document.getElementById("authToggle").textContent=
+authMode==="login"
+?"Create new account"
+:"Back to Login";
+
+document.getElementById("authName").style.display=
+authMode==="register"?"block":"none";
+}
+
+async function authAction(){
+
+const email=document.getElementById("authEmail").value.trim();
+const pass=document.getElementById("authPass").value;
+
+if(!email||!pass){
+alert("Email aur password bharo");
+return;
+}
+
+let r;
+
+if(authMode==="login"){
+
+r=await supabaseClient.auth.signInWithPassword({
+email,
+password:pass
+});
+
+}else{
+
+r=await supabaseClient.auth.signUp({
+email,
+password:pass,
+options:{
+data:{
+full_name:document.getElementById("authName").value.trim()
+}
+}
+});
+
+}
+
+if(r.error){
+
+document.getElementById("authMsg").textContent=r.error.message;
+return;
+
+}
+
+alert(
+authMode==="login"
+?"Login successful ✅"
+:"Account created successfully ✅"
+);
+
+closeModal("authModal");
+
+if(authMode==="login"){
+await checkAdmin();
+await openAuth();
+}
+
+}
+
+async function logout(){
+
+await supabaseClient.auth.signOut();
+
+isAdmin=false;
+
+const btn=document.getElementById("adminBtn");
+
+if(btn)btn.remove();
+
+closeModal("profileModal");
+
+alert("Logged out");
+}
+
+/* PROFILE */
+
+async function loadProfile(){
+
+const {data:{user}}=await supabaseClient.auth.getUser();
+
+if(!user)return;
+
+const {data:p}=await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",user.id)
+.maybeSingle();
+
+document.getElementById("pName").value=
+p?.full_name||user.user_metadata?.full_name||"";
+
+document.getElementById("pMobile").value=p?.mobile||"";
+document.getElementById("pAddress").value=p?.address||"";
+document.getElementById("pCity").value=p?.city||"";
+document.getElementById("pState").value=p?.state||"";
+document.getElementById("pPin").value=p?.pincode||"";
+}
+
+async function saveProfile(){
+
+const {data:{user}}=await supabaseClient.auth.getUser();
+
+if(!user)return;
+
+const row={
+id:user.id,
+full_name:document.getElementById("pName").value.trim(),
+mobile:document.getElementById("pMobile").value.trim(),
+address:document.getElementById("pAddress").value.trim(),
+city:document.getElementById("pCity").value.trim(),
+state:document.getElementById("pState").value.trim(),
+pincode:document.getElementById("pPin").value.trim()
+};
+
+const {error}=await supabaseClient
+.from("profiles")
+.upsert(row);
+
+alert(error?error.message:"Profile saved ✅");
+}
+
+/* CHECKOUT */
+
+async function checkout(){
+
+const {data:{user}}=await supabaseClient.auth.getUser();
+
+if(!user){
+alert("Pehle Login karo");
+return;
+}
+
+if(!cart.length){
+alert("Cart empty");
+return;
+}
+
+closeModal("cartModal");
+
+await loadProfile();
+
+document.getElementById("cName").value=
+document.getElementById("pName").value;
+
+document.getElementById("cMobile").value=
+document.getElementById("pMobile").value;
+
+document.getElementById("cAddress").value=
+document.getElementById("pAddress").value;
+
+document.getElementById("cCity").value=
+document.getElementById("pCity").value;
+
+document.getElementById("cState").value=
+document.getElementById("pState").value;
+
+document.getElementById("cPin").value=
+document.getElementById("pPin").value;
+
+openModal("checkoutModal");
+}
+
+async function placeOrder(){
+
+const {data:{user}}=await supabaseClient.auth.getUser();
+
+if(!user)return;
+
+if(!cart.length){
+alert("Cart empty");
+return;
+}
+
+const ids=[...new Set(cart.map(x=>x.id))];
+
+const {data:ps,error:pe}=await supabaseClient
+.from("products")
+.select("id,name,price,stock")
+.in("id",ids);
+
+if(pe){
+alert(pe.message);
+return;
+}
+
+let totalAmount=0;
+const items=[];
+
+for(const c of cart){
+
+const p=ps.find(x=>x.id===c.id);
+
+if(!p){
+alert("Product unavailable");
+return;
+}
+
+if(Number(p.stock)<Number(c.qty)){
+alert(`${p.name} stock available nahi hai`);
+return;
+}
+
+totalAmount+=Number(p.price)*Number(c.qty);
+
+items.push({
+product_id:p.id,
+product_name:p.name,
+size:c.size||null,
+quantity:Number(c.qty),
+price:Number(p.price)
+});
+
+}
+
+const order={
+user_id:user.id,
+full_name:document.getElementById("cName").value.trim(),
+mobile:document.getElementById("cMobile").value.trim(),
+address:document.getElementById("cAddress").value.trim(),
+city:document.getElementById("cCity").value.trim(),
+state:document.getElementById("cState").value.trim(),
+pincode:document.getElementById("cPin").value.trim(),
+total_amount:totalAmount,
+payment_method:document.getElementById("cPay").value,
+payment_status:"pending",
+status:"pending"
+};
+
+if(
+!order.full_name||
+!order.mobile||
+!order.address||
+!order.city||
+!order.state||
+!order.pincode
+){
+
+alert("Delivery details complete bharo");
+return;
+}
+
+const {data:o,error:oe}=await supabaseClient
+.from("orders")
+.insert(order)
+.select()
+.single();
+
+if(oe){
+alert(oe.message);
+return;
+}
+
+const {error:ie}=await supabaseClient
+.from("order_items")
+.insert(
+items.map(x=>({
+...x,
+order_id:o.id
+}))
+);
+
+if(ie){
+alert(ie.message);
+return;
+}
+
+cart=[];
+
+saveCart();
+
+closeModal("checkoutModal");
+
+alert("Order placed ✅ Order ID: "+o.id);
+
+openOrders();
+}
+
+/* MY ORDERS */
+
+async function openOrders(){
+
+const {data:{user}}=await supabaseClient.auth.getUser();
+
+if(!user){
+alert("Pehle Login karo");
+return;
+}
+
+const {data,error}=await supabaseClient
+.from("orders")
+.select("*,order_items(*)")
+.eq("user_id",user.id)
+.order("created_at",{ascending:false});
+
+if(error){
+
+document.getElementById("ordersBody").innerHTML=
+`<p>${esc(error.message)}</p>`;
+
+}else{
+
+document.getElementById("ordersBody").innerHTML=
+data?.length
+?data.map(o=>`
+<div class="order">
+
+<b>Order ID:</b> ${esc(o.id)}<br>
+<b>Total:</b> ${money(o.total_amount)}<br>
+<b>Status:</b> ${esc(o.status)}<br>
+<b>Payment:</b> ${esc(o.payment_status)}<br>
+
+<hr style="margin:8px 0">
+
+${(o.order_items||[])
+.map(i=>`
+${esc(i.product_name)} × ${i.quantity}
+${i.size?" • Size: "+esc(i.size):""}
+<br>
+`)
+.join("")}
+
+</div>
+`).join("")
+:"No orders yet.";
+
+}
+
+openModal("ordersModal");
+}
+
+/* ADMIN CHECK */
 
 async function checkAdmin(){
-  const {data:{user}} = await supabaseClient.auth.getUser();
-  if(!user) return;
 
-  const {data,error} = await supabaseClient
-    .from("profiles")
-    .select("is_admin")
-    .eq("id",user.id)
-    .maybeSingle();
+const {data:{user}}=await supabaseClient.auth.getUser();
 
-  if(!error && data?.is_admin === true){
-    isAdmin = true;
-    showAdminButton();
-  }
+if(!user){
+isAdmin=false;
+return;
+}
+
+const {data,error}=await supabaseClient
+.from("profiles")
+.select("is_admin")
+.eq("id",user.id)
+.maybeSingle();
+
+if(!error&&data?.is_admin===true){
+
+isAdmin=true;
+showAdminButton();
+
+}else{
+
+isAdmin=false;
+
+const old=document.getElementById("adminBtn");
+
+if(old)old.remove();
+
+}
+
 }
 
 function showAdminButton(){
-  if(document.getElementById("adminBtn")) return;
 
-  const btn = document.createElement("button");
-  btn.id = "adminBtn";
-  btn.className = "act";
-  btn.innerHTML = "<span>⚙️</span>Admin";
-  btn.onclick = openAdmin;
-  document.querySelector(".actions").appendChild(btn);
+if(document.getElementById("adminBtn"))return;
+
+const btn=document.createElement("button");
+
+btn.id="adminBtn";
+btn.className="act";
+
+btn.innerHTML="<span>⚙️</span>Admin";
+
+btn.onclick=openAdmin;
+
+document.querySelector(".actions").appendChild(btn);
 }
 
-function openAdmin(){
-  const old = document.getElementById("adminModal");
-  if(old) old.remove();
+/* ADMIN OPEN */
 
-  const modal = document.createElement("div");
-  modal.className = "modal";
-  modal.id = "adminModal";
+async function openAdmin(){
 
-  modal.innerHTML = `
-    <div class="box">
-      <button class="close" onclick="closeModal('adminModal')">×</button>
-      <h2>⚙️ Admin Panel</h2>
+await checkAdmin();
 
-      <button class="primary" onclick="adminProducts()">📦 Manage Products</button>
-      <button class="secondary" onclick="adminOrders()">🛒 Manage Orders</button>
-
-      <div id="adminBody" style="margin-top:15px">
-        <p>Admin Panel ready ✅</p>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-  openModal("adminModal");
+if(!isAdmin){
+alert("Admin access nahi hai");
+return;
 }
 
-function adminProducts(){
-  document.getElementById("adminBody").innerHTML = `
-    <h3>📦 Product Management</h3>
-    <p style="margin-top:10px">Yahan se products add, edit aur delete karenge.</p>
-  `;
+openModal("adminModal");
+
+await adminDashboard();
+
+adminProducts();
 }
 
-function adminOrders(){
-  document.getElementById("adminBody").innerHTML = `
-    <h3>🛒 Orders</h3>
-    <p style="margin-top:10px">Yahan customer orders manage karenge.</p>
-  `;
+/* ADMIN DASHBOARD */
+
+async function adminDashboard(){
+
+const p=await supabaseClient
+.from("products")
+.select("id,is_active");
+
+const o=await supabaseClient
+.from("orders")
+.select("id,status");
+
+if(p.error||o.error){
+console.error(p.error||o.error);
+return;
 }
+
+const allProducts=p.data||[];
+const orders=o.data||[];
+
+document.getElementById("statProducts").textContent=
+allProducts.length;
+
+document.getElementById("statActive").textContent=
+allProducts.filter(x=>x.is_active).length;
+
+document.getElementById("statOrders").textContent=
+orders.length;
+
+document.getElementById("statPending").textContent=
+orders.filter(x=>x.status==="pending").length;
+}
+
+/* ADMIN PRODUCTS */
+
+async function adminProducts(){
+
+document.getElementById("tabProducts").classList.add("active");
+document.getElementById("tabOrders").classList.remove("active");
+
+const body=document.getElementById("adminBody");
+
+body.innerHTML=`
+
+<div class="row">
+<button class="primary" onclick="showProductForm()">➕ Add New Product</button>
+</div>
+
+<div id="productFormArea"></div>
+
+<h3 style="margin-top:20px">📦 All Products</h3>
+<div id="adminProductsList">Loading...</div>
+`;
+
+await loadAdminProducts();
+}
+
+async function loadAdminProducts(){
+
+const {data,error}=await supabaseClient
+.from("products")
+.select("*")
+.order("created_at",{ascending:false});
+
+const box=document.getElementById("adminProductsList");
+
+if(error){
+box.innerHTML=`<p>${esc(error.message)}</p>`;
+return;
+}
+
+if(!data?.length){
+box.innerHTML='<div class="empty">No products yet.</div>';
+return;
+}
+
+box.innerHTML=data.map(p=>`
+
+<div class="adminProduct">
+
+${p.image_1
+?`<img src="${esc(p.image_1)}">`
+:"<div style="float:left;width:70px;height:70px;background:#eee;border-radius:7px;text-align:center;padding-top:20px">🛍️</div>"
+}
+
+<b>${esc(p.name)}</b><br>
+
+<small>${esc(p.category)} ${p.subcategory?"• "+esc(p.subcategory):""}</small><br>
+
+<strong>${money(p.price)}</strong>
+${p.mrp?` <s>${money(p.mrp)}</s>`:""}
+
+<br>
+
+Stock: ${Number(p.stock||0)}
+
+<br>
+
+<span class="badge ${p.is_active?"":"off"}">
+${p.is_active?"ACTIVE":"INACTIVE"}
+</span>
+
+<div class="adminActions">
+
+<button class="edit" onclick="editProduct('${p.id}')">
+✏️ Edit
+</button>
+
+<button onclick="toggleProduct('${p.id}',${!p.is_active})">
+${p.is_active?"🔴 Disable":"🟢 Activate"}
+</button>
+
+<button class="delete" onclick="deleteProduct('${p.id}')">
+🗑️ Delete
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+}
+
+/* PRODUCT FORM */
+
+function showProductForm(product=null){
+
+const area=document.getElementById("productFormArea");
+
+area.innerHTML=`
+
+<div style="background:#f7f8fa;padding:15px;border-radius:10px;margin-top:12px">
+
+<h3>${product?"✏️ Edit Product":"➕ Add Product"}</h3>
+
+<input id="aName" placeholder="Product Name"
+value="${esc(product?.name||"")}">
+
+<div class="row">
+
+<select id="aCategory">
+
+<option value="MEN" ${product?.category==="MEN"?"selected":""}>MEN</option>
+<option value="WOMEN" ${product?.category==="WOMEN"?"selected":""}>WOMEN</option>
+<option value="KIDS" ${product?.category==="KIDS"?"selected":""}>KIDS</option>
+<option value="FOOTWEAR" ${product?.category==="FOOTWEAR"?"selected":""}>FOOTWEAR</option>
+<option value="ACCESSORIES" ${product?.category==="ACCESSORIES"?"selected":""}>ACCESSORIES</option>
+
+</select>
+
+<input id="aSubcategory"
+placeholder="Subcategory"
+value="${esc(product?.subcategory||"")}">
+
+</div>
+
+<textarea id="aDescription"
+placeholder="Product Description">${esc(product?.description||"")}</textarea>
+
+<input id="aMaterial"
+placeholder="Material"
+value="${esc(product?.material||"")}">
+
+<div class="row">
+
+<input id="aPrice" type="number"
+placeholder="Selling Price"
+value="${product?.price??""}">
+
+<input id="aMrp" type="number"
+placeholder="MRP"
+value="${product?.mrp??""}">
+
+<input id="aStock" type="number"
+placeholder="Stock"
+value="${product?.stock??0}">
+
+</div>
+
+<input id="aSizes"
+placeholder="Sizes — example: S,M,L,XL"
+value="${esc((product?.sizes||[]).join(","))}">
+
+<input id="aImg1"
+placeholder="Image 1 URL"
+value="${esc(product?.image_1||"")}">
+
+<input id="aImg2"
+placeholder="Image 2 URL"
+value="${esc(product?.image_2||"")}">
+
+<input id="aImg3"
+placeholder="Image 3 URL"
+value="${esc(product?.image_3||"")}">
+
+<label style="display:block;margin:10px 0">
+<input id="aActive" type="checkbox"
+${product?.is_active!==false?"checked":""}
+style="width:auto">
+ Product Active
+</label>
+
+<div class="row">
+
+<button class="primary"
+onclick="saveProduct('${product?.id||""}')">
+💾 ${product?"Update Product":"Add Product"}
+</button>
+
+<button class="secondary"
+onclick="document.getElementById('productFormArea').innerHTML=''">
+Cancel
+</button>
+
+</div>
+
+</div>
+`;
+}
+
+async function editProduct(id){
+
+const {data,error}=await supabaseClient
+.from("products")
+.select("*")
+.eq("id",id)
+.single();
+
+if(error){
+alert(error.message);
+return;
+}
+
+showProductForm(data);
+}
+
+async function saveProduct(id){
+
+const name=document.getElementById("aName").value.trim();
+const categoryValue=document.getElementById("aCategory").value;
+const subcategory=document.getElementById("aSubcategory").value.trim();
+const description=document.getElementById("aDescription").value.trim();
+const material=document.getElementById("aMaterial").value.trim();
+const price=Number(document.getElementById("aPrice").value||0);
+const mrpValue=document.getElementById("aMrp").value;
+const mrp=mrpValue===""?null:Number(mrpValue);
+const stock=Number(document.getElementById("aStock").value||0);
+
+const sizes=document.getElementById("aSizes").value
+.split(",")
+.map(x=>x.trim())
+.filter(Boolean);
+
+const image_1=document.getElementById("aImg1").value.trim();
+const image_2=document.getElementById("aImg2").value.trim();
+const image_3=document.getElementById("aImg3").value.trim();
+
+const is_active=document.getElementById("aActive").checked;
+
+if(!name){
+alert("Product name bharo");
+return;
+}
+
+if(price<0||stock<0){
+alert("Price/stock galat hai");
+return;
+}
+
+const row={
+name,
+category:categoryValue,
+subcategory:subcategory||null,
+description:description||null,
+material:material||null,
+price,
+mrp,
+stock,
+sizes,
+image_1:image_1||null,
+image_2:image_2||null,
+image_3:image_3||null,
+is_active,
+updated_at:new Date().toISOString()
+};
+
+let result;
+
+if(id){
+
+result=await supabaseClient
+.from("products")
+.update(row)
+.eq("id",id);
+
+}else{
+
+result=await supabaseClient
+.from("products")
+.insert(row);
+}
+
+if(result.error){
+
+alert(result.error.message);
+return;
+}
+
+alert(id?"Product updated ✅":"Product added ✅");
+
+document.getElementById("productFormArea").innerHTML="";
+
+await adminDashboard();
+await loadAdminProducts();
+await loadProducts(true);
+}
+
+async function toggleProduct(id,active){
+
+const {error}=await supabaseClient
+.from("products")
+.update({
+is_active:active,
+updated_at:new Date().toISOString()
+})
+.eq("id",id);
+
+if(error){
+alert(error.message);
+return;
+}
+
+await adminDashboard();
+await loadAdminProducts();
+await loadProducts(true);
+}
+
+async function deleteProduct(id){
+
+if(!confirm("Is product ko permanently delete karna hai?")){
+return;
+}
+
+const {error}=await supabaseClient
+.from("products")
+.delete()
+.eq("id",id);
+
+if(error){
+alert(error.message);
+return;
+}
+
+alert("Product deleted ✅");
+
+await adminDashboard();
+await loadAdminProducts();
+await loadProducts(true);
+}
+
+/* ADMIN ORDERS */
+
+async function adminOrders(){
+
+document.getElementById("tabProducts").classList.remove("active");
+document.getElementById("tabOrders").classList.add("active");
+
+const body=document.getElementById("adminBody");
+
+body.innerHTML=
+'<h3>🛒 Customer Orders</h3><div id="adminOrdersList">Loading...</div>';
+
+const {data,error}=await supabaseClient
+.from("orders")
+.select("*,order_items(*)")
+.order("created_at",{ascending:false});
+
+const box=document.getElementById("adminOrdersList");
+
+if(error){
+box.innerHTML=`
+<div class="empty">
+<h3>Orders load nahi hue</h3>
+<p>${esc(error.message)}</p>
+</div>`;
+return;
+}
+
+if(!data?.length){
+box.innerHTML=
+'<div class="empty"><h3>No Orders Yet</h3></div>';
+return;
+}
+
+box.innerHTML=data.map(o=>`
+
+<div class="orderAdmin">
+
+<h3>📦 Order</h3>
+
+<small>${esc(o.id)}</small>
+
+<hr style="margin:10px 0">
+
+<b>Customer:</b> ${esc(o.full_name)}<br>
+<b>Mobile:</b> ${esc(o.mobile)}<br>
+
+<b>Address:</b>
+${esc(o.address)}, ${esc(o.city)},
+${esc(o.state)} - ${esc(o.pincode)}
+
+<br><br>
+
+<b>Total:</b> ${money(o.total_amount)}<br>
+
+<b>Items:</b><br>
+
+${(o.order_items||[])
+.map(i=>`
+• ${esc(i.product_name)}
+ × ${i.quantity}
+ ${i.size?"• Size: "+esc(i.size):""}
+ — ${money(i.price)}
+<br>
+`).join("")}
+
+<br>
+
+<div class="row">
+
+<div>
+<label>Status</label>
+<select id="status_${o.id}">
+<option value="pending" ${o.status==="pending"?"selected":""}>Pending</option>
+<option value="confirmed" ${o.status==="confirmed"?"selected":""}>Confirmed</option>
+<option value="packed" ${o.status==="packed"?"selected":""}>Packed</option>
+<option value="shipped" ${o.status==="shipped"?"selected":""}>Shipped</option>
+<option value="delivered" ${o.status==="delivered"?"selected":""}>Delivered</option>
+<option value="cancelled" ${o.status==="cancelled"?"selected":""}>Cancelled</option>
+</select>
+</div>
+
+<div>
+<label>Payment</label>
+<select id="payment_${o.id}">
+<option value="pending" ${o.payment_status==="pending"?"selected":""}>Pending</option>
+<option value="paid" ${o.payment_status==="paid"?"selected":""}>Paid</option>
+<option value="failed" ${o.payment_status==="failed"?"selected":""}>Failed</option>
+<option value="refunded" ${o.payment_status==="refunded"?"selected":""}>Refunded</option>
+</select>
+</div>
+
+</div>
+
+<button class="primary"
+onclick="updateOrder('${o.id}')">
+💾 Update Order
+</button>
+
+</div>
+
+`).join("");
+}
+
+async function updateOrder(id){
+
+const status=document.getElementById("status_"+id).value;
+const payment_status=document.getElementById("payment_"+id).value;
+
+const {error}=await supabaseClient
+.from("orders")
+.update({
+status,
+payment_status,
+updated_at:new Date().toISOString()
+})
+.eq("id",id);
+
+if(error){
+alert(error.message);
+return;
+}
+
+alert("Order updated ✅");
+
+await adminDashboard();
+await adminOrders();
+}
+
+/* AUTH STATE */
+
+supabaseClient.auth.onAuthStateChange((event,session)=>{
+
+updateCount();
+
+setTimeout(()=>{
+
+if(session){
 
 checkAdmin();
-let cart=JSON.parse(localStorage.getItem("akkiCart")||"[]");
-let wishlist=JSON.parse(localStorage.getItem("akkiWishlist")||"[]");
-let authMode="login";
 
-function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function money(v){return Number(v||0).toLocaleString("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0})}
-function img(p){return p.image_1||""}
+}else{
 
-async function loadProducts(reset=false){
- if(reset){page=0;products=[]}
- const q=document.getElementById("search").value.trim();
- let query=supabaseClient.from("products").select("*",{count:"exact"}).eq("is_active",true).order("created_at",{ascending:false}).range(page*PAGE_SIZE,page*PAGE_SIZE+PAGE_SIZE-1);
- if(category!=="ALL")query=query.eq("category",category);
- if(q)query=query.or(`name.ilike.%${q}%,category.ilike.%${q}%,subcategory.ilike.%${q}%`);
- const {data,error,count}=await query;
- if(error){document.getElementById("grid").innerHTML='<div class="empty"><h3>Products load nahi hue</h3><p>Supabase connection/database check karein.</p></div>';console.error(error);return}
- if(reset)products=[];
- products.push(...(data||[])); total=count||0; render(); page++;
- document.getElementById("more").style.display=products.length<total?"block":"none";
-}
-function render(){
- const g=document.getElementById("grid");
- if(!products.length){g.innerHTML='<div class="empty"><h2>No products found 😔</h2><p>Try another search.</p></div>'}
- else g.innerHTML=products.map(p=>{
-  const d=p.mrp&&p.mrp>p.price?Math.round((p.mrp-p.price)*100/p.mrp):0;
-  return `<article class="card" onclick="openProduct('${p.id}')"><div class="pic">${img(p)?`<img src="${esc(img(p))}" alt="${esc(p.name)}" loading="lazy">`:"🛍️"}<button class="heart" onclick="event.stopPropagation();toggleWish('${p.id}')">${wishlist.includes(p.id)?"♥":"♡"}</button>${d?`<small style="position:absolute;left:8px;bottom:8px;background:#0b9b45;color:white;padding:4px;border-radius:4px">${d}% OFF</small>`:""}</div><div class="info"><small>${esc(p.category)}</small><div class="name">${esc(p.name)}</div><div><span class="price">${money(p.price)}</span>${p.mrp?`<span class="mrp">${money(p.mrp)}</span>`:""}</div><button class="add" onclick="event.stopPropagation();addToCart('${p.id}')">🛒 ADD TO CART</button></div></article>`
- }).join("");
- document.getElementById("total").textContent=`${total} Products`;
-}
-function loadMore(){loadProducts(false)}
-function setCategory(c,b){category=c;document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById("heading").textContent=c==="ALL"?"Trending Products":c+" Collection";loadProducts(true)}
-let timer;document.getElementById("search").addEventListener("input",()=>{clearTimeout(timer);timer=setTimeout(()=>loadProducts(true),400)})
+isAdmin=false;
 
-async function openProduct(id){
- const p=products.find(x=>x.id===id)|| (await supabaseClient.from("products").select("*").eq("id",id).single()).data;
- if(!p)return;selected=p;document.getElementById("detailImg").src=img(p)||"";
- document.getElementById("detailName").textContent=p.name;document.getElementById("detailDesc").textContent=p.description||"";
- document.getElementById("detailPrice").textContent=money(p.price);document.getElementById("detailMrp").textContent=p.mrp?money(p.mrp):"";
- document.getElementById("detailMaterial").textContent=p.material?`Material: ${p.material}`:"";
- const s=document.getElementById("detailSize");s.innerHTML='<option value="">Select Size</option>'+(p.sizes||[]).map(x=>`<option>${esc(x)}</option>`).join("");
- document.getElementById("thumbs").innerHTML=[p.image_1,p.image_2,p.image_3].filter(Boolean).map(x=>`<img src="${esc(x)}" onclick="document.getElementById('detailImg').src='${esc(x)}'">`).join("");
- openModal("productModal")
-}
-function addDetailToCart(){if(!selected)return;addToCart(selected.id,document.getElementById("detailSize").value);closeModal("productModal")}
-function addToCart(id,size=""){
- const p=products.find(x=>x.id===id);if(!p)return;
- const key=id+"|"+size, found=cart.find(x=>x.key===key);
- if(found)found.qty++;else cart.push({key,id,size,qty:1});
- saveCart();alert("Cart me add ho gaya 🛒")
-}
-function saveCart(){localStorage.setItem("akkiCart",JSON.stringify(cart));updateCount()}
-function updateCount(){document.getElementById("cartCount").textContent=cart.reduce((a,x)=>a+x.qty,0)}
-async function openCart(){
- const ids=cart.map(x=>x.id), list=ids.length?(await supabaseClient.from("products").select("*").in("id",ids)).data||[]:[];
- let totalCart=0;
- document.getElementById("cartBody").innerHTML=cart.length?cart.map(x=>{const p=list.find(y=>y.id===x.id);if(!p)return"";totalCart+=Number(p.price)*x.qty;return `<div class="order"><b>${esc(p.name)}</b><br>${x.size?"Size: "+esc(x.size)+" • ":""}Qty: <button onclick="changeQty('${x.key}',-1)">−</button> ${x.qty} <button onclick="changeQty('${x.key}',1)">+</button><br>${money(p.price*x.qty)} <button onclick="removeCart('${x.key}')">Remove</button></div>`}).join("")+`<h3>Total: ${money(totalCart)}</h3>`:'<div class="empty">Cart is empty 🛒</div>';
- openModal("cartModal")
-}
-function changeQty(k,n){const x=cart.find(a=>a.key===k);if(x){x.qty+=n;if(x.qty<1)cart=cart.filter(a=>a.key!==k)}saveCart();openCart()}
-function removeCart(k){cart=cart.filter(a=>a.key!==k);saveCart();openCart()}
-function toggleWish(id){wishlist=wishlist.includes(id)?wishlist.filter(x=>x!==id):[...wishlist,id];localStorage.setItem("akkiWishlist",JSON.stringify(wishlist));render()}
-async function openWishlist(){const list=wishlist.length?(await supabaseClient.from("products").select("*").in("id",wishlist)).data||[]:[];document.getElementById("wishBody").innerHTML=list.length?list.map(p=>`<div class="order"><b>${esc(p.name)}</b> — ${money(p.price)} <button onclick="addToCart('${p.id}')">Add Cart</button></div>`).join(""):"Wishlist empty ❤️";openModal("wishModal")}
+const old=document.getElementById("adminBtn");
 
-function openModal(id){document.getElementById(id).style.display="flex"}function closeModal(id){document.getElementById(id).style.display="none"}
-async function openAuth(){const {data}=await supabaseClient.auth.getSession();if(data.session){await loadProfile();openModal("profileModal")}else openModal("authModal")}
-function toggleAuth(){authMode=authMode==="login"?"register":"login";document.getElementById("authTitle").textContent=authMode==="login"?"Login":"Create Account";document.getElementById("authBtn").textContent=authMode==="login"?"Login":"Register";document.getElementById("authToggle").textContent=authMode==="login"?"Create new account":"Back to Login";document.getElementById("authName").style.display=authMode==="register"?"block":"none"}
-async function authAction(){const email=document.getElementById("authEmail").value.trim(),pass=document.getElementById("authPass").value;if(!email||!pass)return alert("Email aur password bharo");let r=authMode==="login"?await supabaseClient.auth.signInWithPassword({email,password:pass}):await supabaseClient.auth.signUp({email,password:pass,options:{data:{full_name:document.getElementById("authName").value}}});if(r.error){document.getElementById("authMsg").textContent=r.error.message;return}alert(authMode==="login"?"Login successful ✅":"Account created. Email confirmation ho to email verify karo.");closeModal("authModal");if(authMode==="login")openAuth()}
-async function logout(){await supabaseClient.auth.signOut();closeModal("profileModal");alert("Logged out")}
-async function loadProfile(){const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return;const {data:p}=await supabaseClient.from("profiles").select("*").eq("id",user.id).maybeSingle();document.getElementById("pName").value=p?.full_name||user.user_metadata?.full_name||"";document.getElementById("pMobile").value=p?.mobile||"";document.getElementById("pAddress").value=p?.address||"";document.getElementById("pCity").value=p?.city||"";document.getElementById("pState").value=p?.state||"";document.getElementById("pPin").value=p?.pincode||""}
-async function saveProfile(){const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return;const row={id:user.id,full_name:pName.value,mobile:pMobile.value,address:pAddress.value,city:pCity.value,state:pState.value,pincode:pPin.value};const {error}=await supabaseClient.from("profiles").upsert(row);alert(error?error.message:"Profile saved ✅")}
-async function checkout(){const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return alert("Pehle Login karo");closeModal("cartModal");await loadProfile();document.getElementById("cName").value=pName.value;document.getElementById("cMobile").value=pMobile.value;document.getElementById("cAddress").value=pAddress.value;document.getElementById("cCity").value=pCity.value;document.getElementById("cState").value=pState.value;document.getElementById("cPin").value=pPin.value;openModal("checkoutModal")}
-async function placeOrder(){
- const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return;
- const ids=cart.map(x=>x.id);if(!ids.length)return alert("Cart empty");
- const {data:ps,error:pe}=await supabaseClient.from("products").select("id,name,price,stock").in("id",ids);if(pe)return alert(pe.message);
- let total=0;const items=[];
- for(const c of cart){const p=ps.find(x=>x.id===c.id);if(!p)return alert("Product unavailable");if(Number(p.stock)<c.qty)return alert(`${p.name} stock available nahi hai`);total+=Number(p.price)*c.qty;items.push({product_id:p.id,product_name:p.name,size:c.size||null,quantity:c.qty,price:p.price})}
- const order={user_id:user.id,full_name:cName.value.trim(),mobile:cMobile.value.trim(),address:cAddress.value.trim(),city:cCity.value.trim(),state:cState.value.trim(),pincode:cPin.value.trim(),total_amount:total,payment_method:cPay.value,payment_status:"pending",status:"pending"};
- if(!order.full_name||!order.mobile||!order.address||!order.city||!order.state||!order.pincode)return alert("Delivery details complete bharo");
- const {data:o,error:oe}=await supabaseClient.from("orders").insert(order).select().single();if(oe)return alert(oe.message);
- const {error:ie}=await supabaseClient.from("order_items").insert(items.map(x=>({...x,order_id:o.id})));
- if(ie){alert(ie.message);return}
- cart=[];saveCart();closeModal("checkoutModal");alert("Order placed ✅ Order ID: "+o.id);openOrders()
-}
-async function openOrders(){const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return alert("Pehle Login karo");const {data,error}=await supabaseClient.from("orders").select("*,order_items(*)").eq("user_id",user.id).order("created_at",{ascending:false});document.getElementById("ordersBody").innerHTML=error?error.message:(data?.length?data.map(o=>`<div class="order"><b>Order: ${o.id}</b><br>Total: ${money(o.total_amount)}<br>Status: ${esc(o.status)}<br>Payment: ${esc(o.payment_status)}<br>${(o.order_items||[]).map(i=>esc(i.product_name)+" × "+i.quantity).join("<br>")}</div>`).join(""):"No orders yet.");openModal("ordersModal")}
-supabaseClient.auth.onAuthStateChange(async (event, session)=>{
-  updateCount();
+if(old)old.remove();
 
-  if(session){
-    await checkAdmin();
-  }else{
-    const oldBtn=document.getElementById("adminBtn");
-    if(oldBtn) oldBtn.remove();
-  }
+}
+
+},0);
+
 });
+
+/* START */
 
 updateCount();
 loadProducts(true);
+
+setTimeout(()=>{
+checkAdmin();
+},500);
+
 </script>
+
 </body>
 </html>
