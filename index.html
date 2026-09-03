@@ -54,6 +54,40 @@ const SUPABASE_PUBLISHABLE_KEY="sb_publishable_zhV_YTg9B4wvJIb346legg_8FDD3JjN";
 const supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
 
 let products=[], page=0, PAGE_SIZE=24, total=0, category="ALL", selected=null;
+ let isAdmin = false;
+
+async function checkAdmin(){
+  const {data:{user}} = await supabaseClient.auth.getUser();
+  if(!user) return;
+
+  const {data,error} = await supabaseClient
+    .from("profiles")
+    .select("is_admin")
+    .eq("id",user.id)
+    .maybeSingle();
+
+  if(!error && data?.is_admin === true){
+    isAdmin = true;
+    showAdminButton();
+  }
+}
+
+function showAdminButton(){
+  if(document.getElementById("adminBtn")) return;
+
+  const btn = document.createElement("button");
+  btn.id = "adminBtn";
+  btn.className = "act";
+  btn.innerHTML = "<span>⚙️</span>Admin";
+  btn.onclick = openAdmin;
+  document.querySelector(".actions").appendChild(btn);
+}
+
+function openAdmin(){
+  alert("Admin Panel ready ✅");
+}
+
+checkAdmin();
 let cart=JSON.parse(localStorage.getItem("akkiCart")||"[]");
 let wishlist=JSON.parse(localStorage.getItem("akkiWishlist")||"[]");
 let authMode="login";
