@@ -1,1 +1,145 @@
-"C:\Users\ankit\Downloads\akki-prime-shop-index (3).html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AKKI PRIME SHOP</title>
+<meta name="description" content="AKKI PRIME SHOP - Fashion & Lifestyle">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;background:#f5f6f8;color:#222}button{border:0;cursor:pointer}header{background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid #eee}.head{max-width:1400px;margin:auto;padding:12px 18px;display:flex;align-items:center;gap:18px}.logo{min-width:205px}.logo h1{font-size:25px}.logo b{color:#2874f0}.logo small{color:#777}.search{flex:1;display:flex;background:#f1f3f6;border-radius:8px;overflow:hidden;height:44px}.search input{flex:1;border:0;background:transparent;padding:0 14px;outline:0}.search button{width:55px;background:#2874f0;color:#fff;font-size:18px}.actions{display:flex;gap:14px}.act{background:none;font-weight:bold;text-align:center}.act span{display:block;font-size:21px}.cats{background:#fff;border-bottom:1px solid #eee;overflow:auto}.catbar{max-width:1400px;margin:auto;display:flex;justify-content:center;gap:9px;padding:9px}.cat{padding:10px 19px;border-radius:22px;background:#f1f3f6;white-space:nowrap;font-weight:bold}.cat.active,.cat:hover{background:#2874f0;color:#fff}.hero{max-width:1400px;margin:18px auto;padding:0 15px}.heroBox{min-height:330px;border-radius:16px;padding:50px;background:linear-gradient(90deg,#101827,#2874f0);color:white}.hero h2{font-size:48px;margin:10px 0}.hero p{font-size:17px;margin-bottom:22px}.shop{padding:13px 24px;border-radius:7px;color:#2874f0;font-weight:bold}.section{max-width:1400px;margin:25px auto;padding:0 15px}.title{display:flex;justify-content:space-between;margin-bottom:15px}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}.card{background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;cursor:pointer}.pic{height:250px;background:#f1f1f1;display:flex;align-items:center;justify-content:center;position:relative}.pic img{width:100%;height:100%;object-fit:cover}.heart{position:absolute;right:9px;top:9px;width:34px;height:34px;border-radius:50%;background:#fff;font-size:20px}.info{padding:12px}.name{font-weight:bold;min-height:38px}.price{font-size:19px;font-weight:bold}.mrp{text-decoration:line-through;color:#888;font-size:13px;margin-left:5px}.add{width:100%;margin-top:9px;padding:10px;background:#ff9f00;color:#fff;border-radius:6px;font-weight:bold}.load{display:block;margin:22px auto;padding:12px 25px;background:#2874f0;color:#fff;border-radius:7px}.features{background:#fff;padding:25px;margin-top:30px}.featuregrid{max-width:1400px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.modal{display:none;position:fixed;inset:0;background:#0008;z-index:50;align-items:center;justify-content:center;padding:15px}.box{background:#fff;border-radius:14px;max-width:650px;width:100%;max-height:90vh;overflow:auto;padding:22px;position:relative}.close{position:absolute;right:15px;top:12px;background:#eee;border-radius:50%;width:30px;height:30px}.box h2{margin-bottom:15px}.box input,.box textarea,.box select{width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:7px}.primary{width:100%;padding:12px;background:#2874f0;color:#fff;border-radius:7px;margin-top:8px;font-weight:bold}.secondary{width:100%;padding:12px;background:#eee;border-radius:7px;margin-top:8px}.detailImg{width:100%;max-height:350px;object-fit:contain;background:#f5f5f5;border-radius:8px}.mini{display:flex;gap:7px;margin:8px 0}.mini img{width:65px;height:65px;object-fit:cover;border-radius:6px;cursor:pointer}.row{display:flex;gap:8px}.order{border:1px solid #eee;border-radius:9px;padding:12px;margin:9px 0}.empty{text-align:center;background:#fff;padding:45px;border-radius:12px;grid-column:1/-1}
+footer{background:#172337;color:#fff;padding:35px;text-align:center;margin-top:30px}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:700px){.head{flex-wrap:wrap}.logo{width:100%}.actions{position:absolute;right:10px;top:12px}.search{order:3;flex-basis:100%}.heroBox{padding:30px 22px}.hero h2{font-size:34px}.grid{grid-template-columns:repeat(2,1fr);gap:9px}.pic{height:190px}.featuregrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:420px){.pic{height:165px}.featuregrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="head">
+<a class="logo" href="#"><h1>AKKI <b>PRIME</b></h1><small>SHOP • FASHION • LIFESTYLE</small></a>
+<div class="search"><input id="search" placeholder="Search products..."><button onclick="loadProducts(true)">🔍</button></div>
+<div class="actions">
+<button class="act" onclick="openAuth()"><span>👤</span>Login</button>
+<button class="act" onclick="openWishlist()"><span>❤️</span>Wishlist</button>
+<button class="act" onclick="openCart()"><span>🛒</span>Cart <b id="cartCount">0</b></button>
+</div></div></header>
+<nav class="cats"><div class="catbar">
+<button class="cat active" onclick="setCategory('ALL',this)">All</button>
+<button class="cat" onclick="setCategory('MEN',this)">👨 Men</button>
+<button class="cat" onclick="setCategory('WOMEN',this)">👩 Women</button>
+<button class="cat" onclick="setCategory('KIDS',this)">🧒 Kids</button>
+<button class="cat" onclick="setCategory('FOOTWEAR',this)">👟 Footwear</button>
+<button class="cat" onclick="setCategory('ACCESSORIES',this)">👜 Accessories</button>
+</div></nav>
+<section class="hero"><div class="heroBox"><small>AKKI PRIME SHOP</small><h2>New Fashion.<br>New You.</h2><p>Trending fashion for Men, Women & Kids.</p><button class="shop" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">SHOP NOW →</button></div></section>
+<section class="section" id="products"><div class="title"><h2 id="heading">Trending Products</h2><span id="total">Loading...</span></div><div class="grid" id="grid"></div><button class="load" id="more" onclick="loadMore()">LOAD MORE</button></section>
+<section class="features"><div class="featuregrid"><div>🚚 <b>Fast Delivery</b><br><small>Quick & reliable</small></div><div>🔒 <b>Secure Shopping</b><br><small>Safe experience</small></div><div>↩️ <b>Easy Returns</b><br><small>Simple process</small></div><div>💬 <b>Support</b><br><small>We're here to help</small></div></div></section>
+<footer>© 2026 AKKI PRIME SHOP. All Rights Reserved.</footer>
+
+<div class="modal" id="authModal"><div class="box"><button class="close" onclick="closeModal('authModal')">×</button><h2 id="authTitle">Login</h2><input id="authEmail" type="email" placeholder="Email"><input id="authPass" type="password" placeholder="Password"><input id="authName" placeholder="Full Name" style="display:none"><button class="primary" onclick="authAction()" id="authBtn">Login</button><button class="secondary" onclick="toggleAuth()" id="authToggle">Create new account</button><p id="authMsg"></p></div></div>
+
+<div class="modal" id="productModal"><div class="box"><button class="close" onclick="closeModal('productModal')">×</button><img id="detailImg" class="detailImg"><div class="mini" id="thumbs"></div><h2 id="detailName"></h2><p id="detailDesc"></p><p><b id="detailPrice"></b> <s id="detailMrp"></s></p><p id="detailMaterial"></p><select id="detailSize"><option value="">Select Size</option></select><button class="primary" onclick="addDetailToCart()">🛒 Add to Cart</button></div></div>
+
+<div class="modal" id="cartModal"><div class="box"><button class="close" onclick="closeModal('cartModal')">×</button><h2>Your Cart</h2><div id="cartBody"></div><button class="primary" onclick="checkout()">Proceed to Checkout</button></div></div>
+
+<div class="modal" id="wishModal"><div class="box"><button class="close" onclick="closeModal('wishModal')">×</button><h2>❤️ Wishlist</h2><div id="wishBody"></div></div></div>
+
+<div class="modal" id="profileModal"><div class="box"><button class="close" onclick="closeModal('profileModal')">×</button><h2>My Profile</h2><input id="pName" placeholder="Full Name"><input id="pMobile" placeholder="Mobile"><textarea id="pAddress" placeholder="Address"></textarea><input id="pCity" placeholder="City"><input id="pState" placeholder="State"><input id="pPin" placeholder="Pincode"><button class="primary" onclick="saveProfile()">Save Profile</button><button class="secondary" onclick="logout()">Logout</button></div></div>
+
+<div class="modal" id="checkoutModal"><div class="box"><button class="close" onclick="closeModal('checkoutModal')">×</button><h2>Checkout</h2><input id="cName" placeholder="Full Name"><input id="cMobile" placeholder="Mobile"><textarea id="cAddress" placeholder="Address"></textarea><input id="cCity" placeholder="City"><input id="cState" placeholder="State"><input id="cPin" placeholder="Pincode"><select id="cPay"><option value="cod">Cash on Delivery</option></select><button class="primary" onclick="placeOrder()">Place Order</button><p id="orderMsg"></p></div></div>
+
+<div class="modal" id="ordersModal"><div class="box"><button class="close" onclick="closeModal('ordersModal')">×</button><h2>📦 My Orders</h2><div id="ordersBody">Loading...</div></div></div>
+
+<script>
+const SUPABASE_URL="https://yeorrxdcsrzavpsioxco.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_zhV_YTg9B4wvJIb346legg_8FDD3JjN";
+const supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+
+let products=[], page=0, PAGE_SIZE=24, total=0, category="ALL", selected=null;
+let cart=JSON.parse(localStorage.getItem("akkiCart")||"[]");
+let wishlist=JSON.parse(localStorage.getItem("akkiWishlist")||"[]");
+let authMode="login";
+
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function money(v){return Number(v||0).toLocaleString("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0})}
+function img(p){return p.image_1||""}
+
+async function loadProducts(reset=false){
+ if(reset){page=0;products=[]}
+ const q=document.getElementById("search").value.trim();
+ let query=supabaseClient.from("products").select("*",{count:"exact"}).eq("is_active",true).order("created_at",{ascending:false}).range(page*PAGE_SIZE,page*PAGE_SIZE+PAGE_SIZE-1);
+ if(category!=="ALL")query=query.eq("category",category);
+ if(q)query=query.or(`name.ilike.%${q}%,category.ilike.%${q}%,subcategory.ilike.%${q}%`);
+ const {data,error,count}=await query;
+ if(error){document.getElementById("grid").innerHTML='<div class="empty"><h3>Products load nahi hue</h3><p>Supabase connection/database check karein.</p></div>';console.error(error);return}
+ if(reset)products=[];
+ products.push(...(data||[])); total=count||0; render(); page++;
+ document.getElementById("more").style.display=products.length<total?"block":"none";
+}
+function render(){
+ const g=document.getElementById("grid");
+ if(!products.length){g.innerHTML='<div class="empty"><h2>No products found 😔</h2><p>Try another search.</p></div>'}
+ else g.innerHTML=products.map(p=>{
+  const d=p.mrp&&p.mrp>p.price?Math.round((p.mrp-p.price)*100/p.mrp):0;
+  return `<article class="card" onclick="openProduct('${p.id}')"><div class="pic">${img(p)?`<img src="${esc(img(p))}" alt="${esc(p.name)}" loading="lazy">`:"🛍️"}<button class="heart" onclick="event.stopPropagation();toggleWish('${p.id}')">${wishlist.includes(p.id)?"♥":"♡"}</button>${d?`<small style="position:absolute;left:8px;bottom:8px;background:#0b9b45;color:white;padding:4px;border-radius:4px">${d}% OFF</small>`:""}</div><div class="info"><small>${esc(p.category)}</small><div class="name">${esc(p.name)}</div><div><span class="price">${money(p.price)}</span>${p.mrp?`<span class="mrp">${money(p.mrp)}</span>`:""}</div><button class="add" onclick="event.stopPropagation();addToCart('${p.id}')">🛒 ADD TO CART</button></div></article>`
+ }).join("");
+ document.getElementById("total").textContent=`${total} Products`;
+}
+function loadMore(){loadProducts(false)}
+function setCategory(c,b){category=c;document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById("heading").textContent=c==="ALL"?"Trending Products":c+" Collection";loadProducts(true)}
+let timer;document.getElementById("search").addEventListener("input",()=>{clearTimeout(timer);timer=setTimeout(()=>loadProducts(true),400)})
+
+async function openProduct(id){
+ const p=products.find(x=>x.id===id)|| (await supabaseClient.from("products").select("*").eq("id",id).single()).data;
+ if(!p)return;selected=p;document.getElementById("detailImg").src=img(p)||"";
+ document.getElementById("detailName").textContent=p.name;document.getElementById("detailDesc").textContent=p.description||"";
+ document.getElementById("detailPrice").textContent=money(p.price);document.getElementById("detailMrp").textContent=p.mrp?money(p.mrp):"";
+ document.getElementById("detailMaterial").textContent=p.material?`Material: ${p.material}`:"";
+ const s=document.getElementById("detailSize");s.innerHTML='<option value="">Select Size</option>'+(p.sizes||[]).map(x=>`<option>${esc(x)}</option>`).join("");
+ document.getElementById("thumbs").innerHTML=[p.image_1,p.image_2,p.image_3].filter(Boolean).map(x=>`<img src="${esc(x)}" onclick="document.getElementById('detailImg').src='${esc(x)}'">`).join("");
+ openModal("productModal")
+}
+function addDetailToCart(){if(!selected)return;addToCart(selected.id,document.getElementById("detailSize").value);closeModal("productModal")}
+function addToCart(id,size=""){
+ const p=products.find(x=>x.id===id);if(!p)return;
+ const key=id+"|"+size, found=cart.find(x=>x.key===key);
+ if(found)found.qty++;else cart.push({key,id,size,qty:1});
+ saveCart();alert("Cart me add ho gaya 🛒")
+}
+function saveCart(){localStorage.setItem("akkiCart",JSON.stringify(cart));updateCount()}
+function updateCount(){document.getElementById("cartCount").textContent=cart.reduce((a,x)=>a+x.qty,0)}
+async function openCart(){
+ const ids=cart.map(x=>x.id), list=ids.length?(await supabaseClient.from("products").select("*").in("id",ids)).data||[]:[];
+ let totalCart=0;
+ document.getElementById("cartBody").innerHTML=cart.length?cart.map(x=>{const p=list.find(y=>y.id===x.id);if(!p)return"";totalCart+=Number(p.price)*x.qty;return `<div class="order"><b>${esc(p.name)}</b><br>${x.size?"Size: "+esc(x.size)+" • ":""}Qty: <button onclick="changeQty('${x.key}',-1)">−</button> ${x.qty} <button onclick="changeQty('${x.key}',1)">+</button><br>${money(p.price*x.qty)} <button onclick="removeCart('${x.key}')">Remove</button></div>`}).join("")+`<h3>Total: ${money(totalCart)}</h3>`:'<div class="empty">Cart is empty 🛒</div>';
+ openModal("cartModal")
+}
+function changeQty(k,n){const x=cart.find(a=>a.key===k);if(x){x.qty+=n;if(x.qty<1)cart=cart.filter(a=>a.key!==k)}saveCart();openCart()}
+function removeCart(k){cart=cart.filter(a=>a.key!==k);saveCart();openCart()}
+function toggleWish(id){wishlist=wishlist.includes(id)?wishlist.filter(x=>x!==id):[...wishlist,id];localStorage.setItem("akkiWishlist",JSON.stringify(wishlist));render()}
+async function openWishlist(){const list=wishlist.length?(await supabaseClient.from("products").select("*").in("id",wishlist)).data||[]:[];document.getElementById("wishBody").innerHTML=list.length?list.map(p=>`<div class="order"><b>${esc(p.name)}</b> — ${money(p.price)} <button onclick="addToCart('${p.id}')">Add Cart</button></div>`).join(""):"Wishlist empty ❤️";openModal("wishModal")}
+
+function openModal(id){document.getElementById(id).style.display="flex"}function closeModal(id){document.getElementById(id).style.display="none"}
+async function openAuth(){const {data}=await supabaseClient.auth.getSession();if(data.session){await loadProfile();openModal("profileModal")}else openModal("authModal")}
+function toggleAuth(){authMode=authMode==="login"?"register":"login";document.getElementById("authTitle").textContent=authMode==="login"?"Login":"Create Account";document.getElementById("authBtn").textContent=authMode==="login"?"Login":"Register";document.getElementById("authToggle").textContent=authMode==="login"?"Create new account":"Back to Login";document.getElementById("authName").style.display=authMode==="register"?"block":"none"}
+async function authAction(){const email=document.getElementById("authEmail").value.trim(),pass=document.getElementById("authPass").value;if(!email||!pass)return alert("Email aur password bharo");let r=authMode==="login"?await supabaseClient.auth.signInWithPassword({email,password:pass}):await supabaseClient.auth.signUp({email,password:pass,options:{data:{full_name:document.getElementById("authName").value}}});if(r.error){document.getElementById("authMsg").textContent=r.error.message;return}alert(authMode==="login"?"Login successful ✅":"Account created. Email confirmation ho to email verify karo.");closeModal("authModal");if(authMode==="login")openAuth()}
+async function logout(){await supabaseClient.auth.signOut();closeModal("profileModal");alert("Logged out")}
+async function loadProfile(){const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return;const {data:p}=await supabaseClient.from("profiles").select("*").eq("id",user.id).maybeSingle();document.getElementById("pName").value=p?.full_name||user.user_metadata?.full_name||"";document.getElementById("pMobile").value=p?.mobile||"";document.getElementById("pAddress").value=p?.address||"";document.getElementById("pCity").value=p?.city||"";document.getElementById("pState").value=p?.state||"";document.getElementById("pPin").value=p?.pincode||""}
+async function saveProfile(){const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return;const row={id:user.id,full_name:pName.value,mobile:pMobile.value,address:pAddress.value,city:pCity.value,state:pState.value,pincode:pPin.value};const {error}=await supabaseClient.from("profiles").upsert(row);alert(error?error.message:"Profile saved ✅")}
+async function checkout(){const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return alert("Pehle Login karo");closeModal("cartModal");await loadProfile();document.getElementById("cName").value=pName.value;document.getElementById("cMobile").value=pMobile.value;document.getElementById("cAddress").value=pAddress.value;document.getElementById("cCity").value=pCity.value;document.getElementById("cState").value=pState.value;document.getElementById("cPin").value=pPin.value;openModal("checkoutModal")}
+async function placeOrder(){
+ const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return;
+ const ids=cart.map(x=>x.id);if(!ids.length)return alert("Cart empty");
+ const {data:ps,error:pe}=await supabaseClient.from("products").select("id,name,price,stock").in("id",ids);if(pe)return alert(pe.message);
+ let total=0;const items=[];
+ for(const c of cart){const p=ps.find(x=>x.id===c.id);if(!p)return alert("Product unavailable");if(Number(p.stock)<c.qty)return alert(`${p.name} stock available nahi hai`);total+=Number(p.price)*c.qty;items.push({product_id:p.id,product_name:p.name,size:c.size||null,quantity:c.qty,price:p.price})}
+ const order={user_id:user.id,full_name:cName.value.trim(),mobile:cMobile.value.trim(),address:cAddress.value.trim(),city:cCity.value.trim(),state:cState.value.trim(),pincode:cPin.value.trim(),total_amount:total,payment_method:cPay.value,payment_status:"pending",status:"pending"};
+ if(!order.full_name||!order.mobile||!order.address||!order.city||!order.state||!order.pincode)return alert("Delivery details complete bharo");
+ const {data:o,error:oe}=await supabaseClient.from("orders").insert(order).select().single();if(oe)return alert(oe.message);
+ const {error:ie}=await supabaseClient.from("order_items").insert(items.map(x=>({...x,order_id:o.id})));
+ if(ie){alert(ie.message);return}
+ cart=[];saveCart();closeModal("checkoutModal");alert("Order placed ✅ Order ID: "+o.id);openOrders()
+}
+async function openOrders(){const {data:{user}}=await supabaseClient.auth.getUser();if(!user)return alert("Pehle Login karo");const {data,error}=await supabaseClient.from("orders").select("*,order_items(*)").eq("user_id",user.id).order("created_at",{ascending:false});document.getElementById("ordersBody").innerHTML=error?error.message:(data?.length?data.map(o=>`<div class="order"><b>Order: ${o.id}</b><br>Total: ${money(o.total_amount)}<br>Status: ${esc(o.status)}<br>Payment: ${esc(o.payment_status)}<br>${(o.order_items||[]).map(i=>esc(i.product_name)+" × "+i.quantity).join("<br>")}</div>`).join(""):"No orders yet.");openModal("ordersModal")}
+supabaseClient.auth.onAuthStateChange(()=>updateCount());updateCount();loadProducts(true);
+</script>
+</body>
+</html>
